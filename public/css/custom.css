@@ -1,0 +1,78 @@
+/*Страница катлог*/
+.catalog-item{
+	display: flex;
+}
+
+.catalog-img{
+	margin-right: 15px;
+}
+
+.catalog-image{
+	width: 250px;
+	position: relative;
+	top: 7px;
+}
+
+.catalog-text{
+
+}
+
+.catalog-filtr{
+	display: flex;
+}
+
+.catalog-btn{
+	margin-top: 1px;
+	margin-left: 1px;
+	margin-right: 5px;
+	position: relative;
+	bottom: 1px;
+	padding: 2.5px;
+	border-color: #C0C0C0;
+}
+
+.catalog-link{
+	text-decoration: none;
+	color: #C0C0C0;
+}
+
+.catalog-link:hover{
+	color: #A9A9A9;
+}
+
+.catalog-line{
+ 	color: black;
+}
+
+/*Главная страница*/
+
+.main-title{
+
+}
+
+.main-description{
+	
+}
+
+/*Страница просмотра*/
+
+/*Страница случайного фильма*/
+
+.random-container{
+	margin-top: -23px;
+	background-color: silver;
+}
+
+.random-head{
+	padding-top: 15px;
+	display: flex;
+}
+
+.random-title{
+	margin-left: 15px;
+}
+
+.random-img{
+	margin-top: ;
+	width: 55%;
+}
