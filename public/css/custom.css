@@ -56,23 +56,30 @@
 
 /*Страница просмотра*/
 
-/*Страница случайного фильма*/
+/*Страница просмора фильма фильма*/
 
-.random-container{
+.show-container{
 	margin-top: -23px;
 	background-color: silver;
 }
 
-.random-head{
+.show-head{
 	padding-top: 15px;
 	display: flex;
 }
 
-.random-title{
+.show-text{
 	margin-left: 15px;
 }
 
-.random-img{
+.show-title{
+}
+
+.show-orig-title{
+	color: gray;
+}
+
+.show-img{
 	margin-top: ;
 	width: 55%;
 }

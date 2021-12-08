@@ -23,7 +23,7 @@ Auth::routes();
 Route::get('/index',[HomeController::class,'index'])->name('index');
 Route::get('/catalog',[HomeController::class,'catalog'])->name('catalog');
 Route::get('/random',[HomeController::class,'random'])->name('random');
-Route::get('/show/{id}',[HomeController::class,'show'])->name('show');
+Route::get('/show/{span}',[HomeController::class,'show'])->name('show');
 
 
 //Роуты доступные лишь зарегестрированным пользователям

@@ -54,10 +54,10 @@ class HomeController extends Controller
         return view('random', compact('film'));
     }
 
-    public function show($id)
+    public function show($title)
     {
 
-        $kino = DB::table('catalogs')->where('id', $id)->get();
+        $kino = DB::table('catalogs')->where('title', $title)->get();
 
         return view('show', compact('kino'));
     }

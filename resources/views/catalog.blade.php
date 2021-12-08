@@ -27,7 +27,7 @@
          <img class="catalog-image" src="{{ Storage::url('image/films/'.$film->image) }}" alt="Photo">
       </div>
       <div class="catalog-text">
-         <h1><a class="catalog-link" href="{{route('show',$film->id)}}">{{$film->title}}</a></h1>
+         <h1><a class="catalog-link" href="{{route('show',$film->title)}}">{{$film->title}}</a></h1>
          <p>{{$film->description}}</p>
       </div>
   </div>
