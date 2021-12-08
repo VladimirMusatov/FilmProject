@@ -34,11 +34,12 @@ class HomeController extends Controller
         if($request->search){
 
                 $search = $request ->search;
-                $film = DB::table('catalogs')->where('title', '=', $search)->get(); 
+                $film = Catalog::where('title', '=', $search)->get();
         }
         else{
                 $film = Catalog::all();
         }
+
 
         return view('catalog',compact('film'));
     }

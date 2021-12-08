@@ -44,10 +44,15 @@
  	color: black;
 }
 
+.catalog-category{
+	color: :;
+	margin: 5px 0;
+}
+
 /*Главная страница*/
 
 .main-title{
-
+	margin-bottom:-7px ;
 }
 
 .main-description{

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Type extends Migration
+class AddCategory extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class Type extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
+        Schema::table('catalogs', function (Blueprint $table){
+            $table->integer('category_id')->after('OrigTitle');
         });
     }
 

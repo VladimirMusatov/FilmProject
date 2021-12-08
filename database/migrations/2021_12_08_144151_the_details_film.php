@@ -15,13 +15,13 @@ class TheDetailsFilm extends Migration
     {
         Schema::table('catalogs', function (Blueprint $table) {
             //Оригинальное название
-            $table->string('OrigTitle')->comment('Оригинальное название')->after('title')->default(NULL);
+            $table->string('OrigTitle')->comment('Оригинальное название')->after('title');
             //Режиссер
-            $table->string('Director')->comment('Режиссер')->default(NULL);
+            $table->string('Director')->comment('Режиссер');
             //Длительность фильма
-            $table->integer('Duration')->comment('Длительность фильма')->default(NULL);
+            $table->integer('Duration')->comment('Длительность фильма');
             //Дата выхода
-            $table->string('CreatDate')->comment('Дата выхода')->default(NULL);
+            $table->string('CreatDate')->comment('Дата выхода');
         });
     }
 

@@ -5,6 +5,16 @@
 <div class="container">
    <form method="POST" action="{{route('store')}}" enctype="multipart/form-data">
       @csrf
+    <div class="mb-3">
+      <select name="category_id" class="form-select" style="width:25%;" aria-label="Default select example">
+        <option selected>Выберете категорию</option>
+        <option value="1">Кино</option>
+        <option value="2">Сериал</option>
+        <option value="3">Мультфильм</option>
+        <option value="3">Мультсериал</option>
+        <option value="3">Аниме</option> 
+      </select>
+     </div>
      <div class="mb-3">
        <label class="form-label">Название фильма</label>
        <input type="text" name="title" class="form-control" aria-describedby="Название фильма">

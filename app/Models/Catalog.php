@@ -10,6 +10,17 @@ class Catalog extends Model
     use HasFactory;
 
        protected $fillable = [
-      'title', 'description', 'image', 'OrigTitle','Director','Duration','CreatDate',
+      'title',
+      'description', 
+      'image',
+      'OrigTitle',
+      'Director',
+      'Duration',
+      'CreatDate',
+      'category_id',
     ];
+
+    public function category(){
+      return $this->belongsTo(Category::class);
+    }
 }
