@@ -63,10 +63,12 @@ class HomeController extends Controller
         return view('show', compact('kino'));
     }
 
-    public function SortByCat($id)
+    public function SortByCat($slug)
     {
+        $category = Category::where('slug', $slug)->first();
+        $category_id = $category['id'];
 
-        $film  = Catalog::where('category_id', $id)->get();
+        $film  = Catalog::where('category_id', $category_id)->get();
 
         return view('catalog',compact('film'));
     }
