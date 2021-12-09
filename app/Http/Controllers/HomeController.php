@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Catalog;
+use App\Models\Category;
 use App\Models\User;
 
 class HomeController extends Controller
@@ -17,13 +18,11 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-
         return view('index');
     }
 
     public function home()
     {
-
         return view('home');
     }
 
@@ -31,15 +30,16 @@ class HomeController extends Controller
     public function catalog(Request $request)
     {
 
-        if($request->search){
+        if($request->filled('search')){
 
                 $search = $request ->search;
                 $film = Catalog::where('title', '=', $search)->get();
+
         }
         else{
+                $categories = Category::orderBy('title')->get();
                 $film = Catalog::all();
         }
-
 
         return view('catalog',compact('film'));
     }
@@ -61,6 +61,14 @@ class HomeController extends Controller
         $kino = DB::table('catalogs')->where('title', $title)->get();
 
         return view('show', compact('kino'));
+    }
+
+    public function SortByCat($id)
+    {
+
+        $film  = Catalog::where('category_id', $id)->get();
+
+        return view('catalog',compact('film'));
     }
 
 }

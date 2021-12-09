@@ -35,6 +35,11 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <a class="nav-link" href="{{route('catalog')}}">Каталог</a>
+                        <a class="nav-link" href="{{route('categories',1)}}">Кино</a>
+                        <a class="nav-link" href="{{route('categories',2)}}">Сериалы</a>
+                        <a class="nav-link" href="{{route('categories',3)}}">Мультфильмы</a>
+                        <a class="nav-link" href="{{route('categories',4)}}">Мультсериалы</a>
+                        <a class="nav-link" href="{{route('categories',5)}}">Аниме</a>
                         <a class="nav-link" href="{{route('random')}}">Случайный фильм</a>
                     </ul>
 

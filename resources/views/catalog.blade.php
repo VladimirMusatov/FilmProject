@@ -28,7 +28,7 @@
       </div>
       <div class="catalog-text">
          <h1 class="main-title"><a class="catalog-link" href="{{route('show',$film->title)}}">{{$film->title}}</a></h1>
-            <a class="catalog-link" href="#"><div class="catalog-category">{{$film->category['title']}}</div></a>
+            <a class="catalog-link" href="{{route('categories',$film->category['id'])}}"><div class="catalog-category">{{$film->category['title']}}</div></a>
          <p>{{$film->description}}</p>
       </div>
   </div>

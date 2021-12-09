@@ -16,6 +16,7 @@ class Type extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('slug')->unique();
         });
     }
 
@@ -26,6 +27,6 @@ class Type extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('categories');
     }
 }

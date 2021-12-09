@@ -22,6 +22,7 @@ Auth::routes();
 //Общедоступные роуты
 Route::get('/index',[HomeController::class,'index'])->name('index');
 Route::get('/catalog',[HomeController::class,'catalog'])->name('catalog');
+Route::get('/catalog/{slug}',[HomeController::class,'SortByCat'])->name('categories');
 Route::get('/random',[HomeController::class,'random'])->name('random');
 Route::get('/show/{span}',[HomeController::class,'show'])->name('show');
 
