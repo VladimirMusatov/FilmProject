@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Film;
+use App\Models\Serial;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
@@ -14,25 +15,48 @@ class AdminController extends Controller
         return view('admin');
     }
 
-    public function addFilm(){
+    public function addFilm(Request $request){
 
-        return view ('addFilm');
+        $type = $request->type;
+
+        return view ('addFilm', compact('type'));
 
     }
 
     public function store(Request $request){
 
-       $data = $request->all(); 
+       $category_id = $request->category_id; 
 
-       $filename = $data['image']->getClientOriginalName();
+       if($category_id == 1 || $category_id == 3){
 
-       $data['image']->move(Storage::path('/public/image/').'films/',$filename);
+            $data = $request->all(); 
 
-       $data['image'] = $filename;
+            $filename = $data['image']->getClientOriginalName();
 
-       Film::create($data);
+            $data['image']->move(Storage::path('/public/image/').'films/',$filename);
 
-       return redirect('admin');
+            $data['image'] = $filename;
+
+            Film::create($data);
+
+
+       }
+
+       elseif ($category_id == 2 || $category_id == 4 || $category_id == 5 ) {
+           
+            $data = $request->all();
+
+            $filename = $data['image']->getClientOriginalName();
+
+            $data['image']->move(Storage::path('/public/image/').'serials/',$filename);
+
+            $data['image'] = $filename;
+
+            Serial::create($data);
+       }
+
+
+        return redirect('admin');
 
     }
 }
