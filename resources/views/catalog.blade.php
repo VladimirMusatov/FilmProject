@@ -7,7 +7,7 @@
 
  <div class="catalog-filtr">
    <form action="{{route('catalog')}}">
-      <input type="text" name="search" placeholder="search">
+      <input type="text" name="search" value="{{request()->search}}" placeholder="search">
       <button class="btn catalog-btn" type="submit">Поиск</button>
    </form>
    <form action="{{route('catalog')}}">
@@ -17,14 +17,16 @@
    <form action="{{route('catalog')}}">
       <input type="hidden" name="mostpopular">
       <button class="btn catalog-btn" type="submit">Самые популярные</button>
-   </form> 
+   </form>
+   <a class="btn catalog-btn" href="{{route('catalog')}}">Сбросить фильтры</a> 
  </div>
 
+
    <hr>
-   @foreach($film as $film)
+   @foreach($films as $film)
   <div class="catalog-item mb-5">
       <div class="catalog-img">
-         <img class="catalog-image" src="{{ Storage::url('image/films/'.$film->image) }}" alt="Photo">
+         <a href="{{route('show',$film->title)}}"><img class="catalog-image" src="{{ Storage::url('image/films/'.$film->image) }}" alt="Photo"></a>
       </div>
       <div class="catalog-text">
          <h1 class="main-title"><a class="catalog-link" href="{{route('show',$film->title)}}">{{$film->title}}</a></h1>

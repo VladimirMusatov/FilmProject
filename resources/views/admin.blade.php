@@ -2,6 +2,6 @@
 
 @section('content')
 <div class="container">
-   <a class="btn btn-dark" href="{{route('addFilm')}}">Добавить фильм</a>
+   <a class="btn btn-dark" href="{{route('addFilm')}}">Добавить</a>
 </div>
 @endsection

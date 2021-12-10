@@ -2,7 +2,6 @@
 
 @section('content')
 
-
  @foreach($kino as $kino)
  	<div class="container show-container">
  		<div class="show-head">

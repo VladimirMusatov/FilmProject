@@ -78,6 +78,7 @@
 }
 
 .show-title{
+	margin-bottom:5px;
 }
 
 .show-orig-title{
@@ -85,6 +86,5 @@
 }
 
 .show-img{
-	margin-top: ;
-	width: 55%;
+	width: 20%;
 }

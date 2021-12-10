@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\Catalog;
+use App\Models\Film;
 use App\Models\Category;
 use App\Models\User;
 
@@ -26,39 +26,37 @@ class HomeController extends Controller
         return view('home');
     }
 
-
     public function catalog(Request $request)
     {
 
         if($request->filled('search')){
 
                 $search = $request ->search;
-                $film = Catalog::where('title', '=', $search)->get();
+                $films = Film::where('title', '=', $search)->get();
 
         }
         else{
-                $categories = Category::orderBy('title')->get();
-                $film = Catalog::all();
+                $films = Film::all();
         }
 
-        return view('catalog',compact('film'));
+        return view('catalog',compact('films'));
     }
 
     public function random()
     {
 
-        $end = DB::table('catalogs')->count();
+        $end = DB::table('films')->count();
         $rand = rand(1 , $end);
 
-        $film = DB::table('catalogs')->where('id', $rand)->get();
+        $kino = DB::table('films')->where('id', $rand)->get();
 
-        return view('random', compact('film'));
+        return view('show', compact('kino'));
     }
 
     public function show($title)
     {
 
-        $kino = DB::table('catalogs')->where('title', $title)->get();
+        $kino = DB::table('films')->where('title', $title)->get();
 
         return view('show', compact('kino'));
     }
@@ -68,9 +66,9 @@ class HomeController extends Controller
         $category = Category::where('slug', $slug)->first();
         $category_id = $category['id'];
 
-        $film  = Catalog::where('category_id', $category_id)->get();
+        $films  = Film::where('category_id', $category_id)->get();
 
-        return view('catalog',compact('film'));
+        return view('catalog',compact('films'));
     }
 
 }

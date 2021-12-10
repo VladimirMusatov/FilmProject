@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Catalog;
+use App\Models\Film;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
@@ -30,7 +30,7 @@ class AdminController extends Controller
 
        $data['image'] = $filename;
 
-       Catalog::create($data);
+       Film::create($data);
 
        return redirect('admin');
 
