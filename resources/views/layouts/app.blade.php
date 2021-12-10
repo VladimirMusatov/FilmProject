@@ -36,7 +36,7 @@
                     <ul class="navbar-nav me-auto">
                         <a class="nav-link" href="{{route('catalog')}}">Каталог</a>
                         <a class="nav-link" href="{{route('categories','Kino')}}">Кино</a>
-                        <a class="nav-link" href="{{route('categories','Serials')}}">Сериалы</a>
+                        <a class="nav-link" href="{{route('categories','Serial')}}">Сериалы</a>
                         <a class="nav-link" href="{{route('categories','Cartoon')}}">Мультфильмы</a>
                         <a class="nav-link" href="{{route('categories','Animated_series')}}">Мультсериалы</a>
                         <a class="nav-link" href="{{route('categories','Anime')}}">Аниме</a>
