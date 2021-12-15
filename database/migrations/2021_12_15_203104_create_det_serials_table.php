@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTimestampsSerials extends Migration
+class CreateDetSerialsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AddTimestampsSerials extends Migration
      */
     public function up()
     {
-         Schema::table('serials', function (Blueprint $table) {
-
+        Schema::create('det_serials', function (Blueprint $table) {
+            $table->id();
+            $table->string('season');
+            $table->string('episodes');
+            $table->foreignId('Film_id');
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ class AddTimestampsSerials extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('det_serials');
     }
 }

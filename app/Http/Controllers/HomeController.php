@@ -29,15 +29,7 @@ class HomeController extends Controller
     public function catalog(Request $request)
     {
 
-        if($request->filled('search')){
-
-                $search = $request ->search;
-                $films = Film::where('title', '=', $search)->get();
-
-        }
-        else{
-                $films = Film::all();
-        }
+        $films = Film::all();
 
         return view('catalog',compact('films'));
     }
