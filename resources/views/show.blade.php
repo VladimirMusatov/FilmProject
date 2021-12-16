@@ -2,6 +2,7 @@
 
 @section('content')
 
+
  @foreach($kino as $kino)
  	<div class="container show-container">
  		<div class="show-head">
@@ -20,7 +21,6 @@
 		   			@endif
 		   		@endif
 		   		<p>Дата Выхода: {{$kino->CreatDate}}</p>
-
 		   	</div>
 		</div>
 		<hr>
@@ -28,12 +28,36 @@
 	   			<p class="main-description">{{$kino->description}}</p>
 	   		</div>
 	   	<hr>
-   	</div>
+
+	@if(($kino->category->id) == 2 ||($kino->category->id) == 4 ||($kino->category->id) == 5 )
+		<table class="table">
+		  <thead>
+		    <tr>
+		      <th scope="col">Название серии</th>
+		    </tr>
+		  </thead>
+	@foreach($kino->episode as $kino)
+		  <tbody>
+		    <tr>
+		      <th scope="row">
+		      	<form action="{{route('show',$kino->film_id)}}">
+		      		<input type="hidden" name="video" value="{{$kino->link}}">
+		      		<button type="submit" class="btn show-link">{{$kino->title}}</button>
+		      	</form>
+		      </th>
+		      <td>{{$kino->season}} сезон {{$kino->episode}} серия </td>
+		    </tr>
+		    <tr>
+		  </tbody>
+	@endforeach
+		</table>
+	@endif
+	</div>
  @endforeach
 
-<div class="container">
+<div class=" container">
 	<div class="row">
-		<video class="col"  src="http://data10-cdn.datalock.ru/fi2lm/6/7f_Death.Note.E01.2006.720p.BDRip.MediaClub.a1.30.09.17.mp4" controls></video>
+		<video class="col" src="{{$link}}" poster="poster.jpg" controls></video>
 	</div>
 </div>
 

@@ -18,4 +18,9 @@ class episode extends Model
       'link',
       'time',
     ];
+
+    public function episode(){
+      return $this->belongsTo(Film::class);
+    }
+
 }

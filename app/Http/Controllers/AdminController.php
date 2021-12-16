@@ -73,7 +73,7 @@ class AdminController extends Controller
     {
         episode::create($request->all());
 
-        redirect('catalog');
+        return redirect('catalog');
     }
 
 }

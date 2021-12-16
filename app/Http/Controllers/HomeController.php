@@ -46,11 +46,13 @@ class HomeController extends Controller
         return view('show', compact('kino'));
     }
 
-    public function show($id)
+    public function show(Request $request ,$id)
     {   
+        $link = $request->video;
+
         $kino = Film::where('id',$id)->get();
 
-        return view('show', compact('kino'));
+        return view('show',['kino'=>$kino,'link'=>$link]);
     }
 
     public function SortByCat($slug)
