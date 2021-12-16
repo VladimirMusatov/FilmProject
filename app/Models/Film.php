@@ -14,8 +14,6 @@ class Film extends Model
       'description', 
       'image',
       'OrigTitle',
-      'Director',
-      'Duration',
       'CreatDate',
       'category_id',
     ];
@@ -23,4 +21,13 @@ class Film extends Model
     public function category(){
       return $this->belongsTo(Category::class);
     }
+
+    public function DetFilm(){
+        return $this->hasOne(DetFilm::class);
+    }
+
+    public function DetSerial(){
+        return $this->hasOne(DetSerial::class);
+    }
 }
+ 

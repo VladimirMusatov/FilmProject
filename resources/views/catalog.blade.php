@@ -26,11 +26,15 @@
    @foreach($films as $film)
   <div class="catalog-item mb-5">
       <div class="catalog-img">
-         <a href="{{route('show',$film->title)}}"><img class="catalog-image" src="{{ Storage::url('image/films/'.$film->image) }}" alt="Photo"></a>
+         <a href="{{route('show',$film->id)}}"><img class="catalog-image" src="{{ Storage::url('image/films/'.$film->image) }}" alt="Photo"></a>
       </div>
       <div class="catalog-text">
-         <h1 class="main-title"><a class="catalog-link" href="{{route('show',$film->title)}}">{{$film->title}}</a></h1>
+         <h1 class="main-title"><a class="catalog-link" href="{{route('show',$film->id)}}">{{$film->title}}</a></h1>
             <a class="catalog-link" href="{{route('categories',$film->category['slug'])}}"><div class="catalog-category">{{$film->category['title']}}</div></a>
+               @if(($film->category->id) == 2 ||($film->category->id) == 4 || ($film->category->id) == 5 )
+               <p>Количество серий: {{$film->DetSerial->episodes}} </p>
+               <p>Количество сезонов: {{$film->DetSerial->season}}</p>
+               @endif
          <p>{{$film->description}}</p>
       </div>
   </div>

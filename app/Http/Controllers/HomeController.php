@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Film;
+use App\Models\DetFilm;
 use App\Models\Category;
 use App\Models\User;
 
@@ -40,15 +41,14 @@ class HomeController extends Controller
         $end = DB::table('films')->count();
         $rand = rand(1 , $end);
 
-        $kino = DB::table('films')->where('id', $rand)->get();
+        $kino = Film::where('id', $rand)->get();
 
         return view('show', compact('kino'));
     }
 
-    public function show($title)
-    {
-
-        $kino = DB::table('films')->where('title', $title)->get();
+    public function show($id)
+    {   
+        $kino = Film::where('id',$id)->get();
 
         return view('show', compact('kino'));
     }

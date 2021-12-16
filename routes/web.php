@@ -24,7 +24,7 @@ Route::get('/index',[HomeController::class,'index'])->name('index');
 Route::get('/catalog',[HomeController::class,'catalog'])->name('catalog');
 Route::get('/catalog/{slug}',[HomeController::class,'SortByCat'])->name('categories');
 Route::get('/random',[HomeController::class,'random'])->name('random');
-Route::get('/show/{span}',[HomeController::class,'show'])->name('show');
+Route::get('/show/{id}',[HomeController::class,'show'])->name('show');
 
 
 //Роуты доступные лишь зарегестрированным пользователям
@@ -43,5 +43,8 @@ Route::group(['middleware' =>['role:admin']], function(){
     Route::get('/addFilm',[AdminController::class, 'addFilm'])->name('addFilm');
     //Сохранение фильма
     Route::post('/store',[AdminController::class, 'store'])->name('store');
-
+    //Сохранение дополнительной информации о фильме
+    Route::post('/saveDetFilm',[AdminController::class, 'saveDetFilm'])->name('saveDetFilm');
+    //Сохранение дополнительной информации о сериале
+    Route::post('/saveDetSerial',[AdminController::class,'saveDetSerial'])->name('saveDetSerials');
 });

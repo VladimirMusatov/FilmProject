@@ -17,7 +17,7 @@ class CreateDetSerialsTable extends Migration
             $table->id();
             $table->string('season');
             $table->string('episodes');
-            $table->foreignId('Film_id');
+            $table->foreignId('film_id');
             $table->timestamps();
         });
     }

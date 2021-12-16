@@ -17,7 +17,7 @@ class CreateDetFilmsTable extends Migration
             $table->id();
             $table->string('director')->comment('Режиссер');
             $table->string('duration')->comment('Продолжительность');
-            $table->foreignId('Film_id');
+            $table->foreignId('film_id');
             $table->timestamps();
         });
     }

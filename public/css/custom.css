@@ -88,3 +88,15 @@
 .show-img{
 	width: 20%;
 }
+
+/*Админка*/
+
+.admin-btn{
+	height: 40px;
+
+}
+
+.admin-display{
+	display: flex;
+	justify-content: space-between;
+}

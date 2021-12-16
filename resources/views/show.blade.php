@@ -9,9 +9,16 @@
 			<div class="show-text">
 		   		<h1 class="main-title show-title">{{$kino->title}}</h1>
 		   		<h4 class="show-orig-title">{{$kino->OrigTitle}}</h4>
-		   		<p>Режиссер: {{$kino->Director}}</p>
+		   		<p>Тип: {{$kino->category->title}}</p>
+		   		@if(($kino->category->id) == 1 ||($kino->category->id) == 3 )
+		   		<p>Режиссер: {{$kino->DetFilm->director}}</p>
+		   		<p>Длительность: {{$kino->DetFilm->duration}} минут</p>
+		   		@else
+		   		<p>Количество серий: {{$kino->DetSerial->episodes}} </p>
+		   		<p>Количество сезонов: {{$kino->DetSerial->season}}</p>
+		   		@endif
 		   		<p>Дата Выхода: {{$kino->CreatDate}}</p>
-		   		<p>Длительность фильма: {{$kino->Duration}} минут</p>
+
 		   	</div>
 		</div>
 		<hr>

@@ -4,31 +4,31 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Film;
+use App\Models\DetFilm;
+use App\Models\DetSerial;
 use App\Models\Serial;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 class AdminController extends Controller
 {
-    public function admin(){
+    public function admin(Request $request){
 
-        return view('admin');
+        $films = Film::all();
+
+        return view('admin', compact('films'));
     }
 
-    public function addFilm(Request $request){
-
-        $type = $request->type;
+    public function addFilm(Request $request)
+    {   
+        $type = $request->Film;
 
         return view ('addFilm', compact('type'));
-
     }
 
-    public function store(Request $request){
-
-       $category_id = $request->category_id; 
-
-       if($category_id == 1 || $category_id == 3){
-
+    public function store(Request $request)
+    {
+    
             $data = $request->all(); 
 
             $filename = $data['image']->getClientOriginalName();
@@ -39,24 +39,21 @@ class AdminController extends Controller
 
             Film::create($data);
 
+            return redirect('admin');
+    }
 
-       }
-
-       elseif ($category_id == 2 || $category_id == 4 || $category_id == 5 ) {
-           
-            $data = $request->all();
-
-            $filename = $data['image']->getClientOriginalName();
-
-            $data['image']->move(Storage::path('/public/image/').'serials/',$filename);
-
-            $data['image'] = $filename;
-
-            Serial::create($data);
-       }
-
+    public function saveDetFilm(Request $request)
+    {
+        DetFilm::create($request->all());
 
         return redirect('admin');
-
     }
+
+    public function saveDetSerial(Request $request)
+    {
+        DetSerial::create($request->all());
+
+        return redirect('admin');
+    }
+
 }
