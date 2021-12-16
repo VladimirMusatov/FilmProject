@@ -31,10 +31,12 @@
       <div class="catalog-text">
          <h1 class="main-title"><a class="catalog-link" href="{{route('show',$film->id)}}">{{$film->title}}</a></h1>
             <a class="catalog-link" href="{{route('categories',$film->category['slug'])}}"><div class="catalog-category">{{$film->category['title']}}</div></a>
+            @if(isset($film->DetFilm) || isset($film->DetSerial))
                @if(($film->category->id) == 2 ||($film->category->id) == 4 || ($film->category->id) == 5 )
                <p>Количество серий: {{$film->DetSerial->episodes}} </p>
                <p>Количество сезонов: {{$film->DetSerial->season}}</p>
                @endif
+            @endif
          <p>{{$film->description}}</p>
       </div>
   </div>

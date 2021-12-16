@@ -41,10 +41,14 @@ Route::group(['middleware' =>['role:admin']], function(){
     Route::get('/admin',[AdminController::class, 'admin'])->name('admin');
     //Роут для добавления фильма
     Route::get('/addFilm',[AdminController::class, 'addFilm'])->name('addFilm');
+    //Добавление серии
+    Route::get('/addEpisode',[AdminController::class, 'addEpisode'])->name('addEpisode');
     //Сохранение фильма
     Route::post('/store',[AdminController::class, 'store'])->name('store');
     //Сохранение дополнительной информации о фильме
     Route::post('/saveDetFilm',[AdminController::class, 'saveDetFilm'])->name('saveDetFilm');
     //Сохранение дополнительной информации о сериале
     Route::post('/saveDetSerial',[AdminController::class,'saveDetSerial'])->name('saveDetSerials');
+    //Сохранение серии
+    Route::post('/saveEpisode',[AdminController::class,'saveEpisode'])->name('saveEpisode');
 });

@@ -10,12 +10,14 @@
 		   		<h1 class="main-title show-title">{{$kino->title}}</h1>
 		   		<h4 class="show-orig-title">{{$kino->OrigTitle}}</h4>
 		   		<p>Тип: {{$kino->category->title}}</p>
-		   		@if(($kino->category->id) == 1 ||($kino->category->id) == 3 )
-		   		<p>Режиссер: {{$kino->DetFilm->director}}</p>
-		   		<p>Длительность: {{$kino->DetFilm->duration}} минут</p>
-		   		@else
-		   		<p>Количество серий: {{$kino->DetSerial->episodes}} </p>
-		   		<p>Количество сезонов: {{$kino->DetSerial->season}}</p>
+		   		@if(isset($kino->DetFilm) || isset($kino->DetSerial))
+		   			@if(($kino->category->id) == 1 ||($kino->category->id) == 3 )
+		   			<p>Режиссер: {{$kino->DetFilm->director}}</p>
+		   			<p>Длительность: {{$kino->DetFilm->duration}} минут</p>
+		   			@else
+		   			<p>Количество серий: {{$kino->DetSerial->episodes}} </p>
+		   			<p>Количество сезонов: {{$kino->DetSerial->season}}</p>
+		   			@endif
 		   		@endif
 		   		<p>Дата Выхода: {{$kino->CreatDate}}</p>
 
@@ -29,5 +31,10 @@
    	</div>
  @endforeach
 
+<div class="container">
+	<div class="row">
+		<video class="col"  src="http://data10-cdn.datalock.ru/fi2lm/6/7f_Death.Note.E01.2006.720p.BDRip.MediaClub.a1.30.09.17.mp4" controls></video>
+	</div>
+</div>
 
 @endsection
