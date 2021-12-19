@@ -43,6 +43,8 @@
   <hr class="mb-3">
   @endforeach
 </div>
-
+   <div style="display: flex; justify-content: center;">
+      {{ $films->links() }}
+   </div>
 </div>
 @endsection

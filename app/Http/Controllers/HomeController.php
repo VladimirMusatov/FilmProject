@@ -11,12 +11,6 @@ use App\Models\User;
 
 class HomeController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index(Request $request)
     {
         return view('index');
@@ -30,7 +24,7 @@ class HomeController extends Controller
     public function catalog(Request $request)
     {
 
-        $films = Film::all();
+        $films = Film::paginate(4);
 
         return view('catalog',compact('films'));
     }

@@ -7,7 +7,6 @@ use App\Models\Film;
 use App\Models\DetFilm;
 use App\Models\DetSerial;
 use App\Models\Serial;
-use App\Models\episode;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
@@ -20,23 +19,30 @@ class AdminController extends Controller
         return view('admin', compact('films'));
     }
 
-    public function addFilm(Request $request)
+    public function addFilm()
     {   
-
-        $film_id = $request->Film;  
-
-        $film = Film::where('id', $film_id)->get();      
-
-        return view ('addFilm', compact('film'));
+        return view ('addFilm');
     }
 
-    public function addEpisode(Request $request)
+    public function edit($id)
     {   
-        $film_id = $request->Film;
+        $film = Film::where('id', $id)->get();
 
-        $film = Film::where('id', $film_id)->get();
+        return view ('edit',compact('film'));
+    }
 
-        return view('addEpisode',compact('film'));
+    public function update(Request $request, Film $film)
+    {
+  
+    }
+
+    public function addDet(Request $request)
+    {
+        $film_id = $request->Film;  
+
+        $film = Film::where('id', $film_id)->get(['id' => 'id','category_id' => 'category_id',]);
+
+        return view ('add_det',compact('film'));
     }
 
     public function store(Request $request)
@@ -67,13 +73,6 @@ class AdminController extends Controller
         DetSerial::create($request->all());
 
         return redirect('admin');
-    }
-
-    public function saveEpisode(Request $request)
-    {
-        episode::create($request->all());
-
-        return redirect('catalog');
     }
 
 }

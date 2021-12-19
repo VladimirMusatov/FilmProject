@@ -3,38 +3,8 @@
 @section('content')
 
 <div class="container">
-@foreach($film as $film)
-  @if(($film->category_id) == 1 ||($film->category_id) == 3)
-    <form method="POST" style="width: 50%" action="{{route('saveDetFilm')}}">
-      @csrf
-      <div class="mb-3">
-         <label class="form-label">Добавить Режиссера</label>
-         <input type="text" name="director" class="form-control" aria-describedby="Название">
-       </div>
-     <div class="mb-3">
-         <label class="form-label">Продолжительность фильма</label>
-         <input type="text" name="duration" class="form-control" aria-describedby="Название">
-       </div>
-          <input type="hidden" name="film_id" value="{{$film->id}}">
-        <button class="btn btn-secondary  col-auto" type="submit">Добавить</button>
-    </form>
-  @elseif(($film->category_id) == 2 ||($film->category_id) == 4 ||($film->category_id) == 5 )
-    <form method="POST" style="width: 50%" action="{{route('saveDetSerials')}}">
-      @csrf
-      <div class="mb-3">
-         <label class="form-label">Количество сезонов</label>
-         <input type="text" name="season" class="form-control" aria-describedby="Название">
-       </div>
-      <div class="mb-3">
-         <label class="form-label">Количестов серий</label>
-         <input type="text" name="episodes" class="form-control" aria-describedby="Название">
-       </div>
-          <input type="hidden" name="film_id" value="{{$film->id}}">
-        <button class="btn btn-secondary  col-auto" type="submit">Добавить</button>
-    </form>
-  @endif
-@endforeach
-    <form  method="POST"  action="{{route('store')}}" enctype="multipart/form-data">
+
+   <form  method="POST"  action="{{route('store')}}" enctype="multipart/form-data">
       @csrf
         <div class="mb-3 row g-3 align-items-center">
         <select name="category_id" class="form-select col-auto" style="width:25%;" aria-label="Default select example">
@@ -66,8 +36,13 @@
           <label class="form-label">Добавить изображение</label>
           <input type="file" class="form-control-file" name="image">
        </div>
+        <div>
+          <label class="form-label">Ссылка на источник</label>
+          <input type="text" name="link" class="form-control" aria-describedby="Название"> 
+        </div>
          <button class="btn btn-secondary  col-auto" type="submit">Добавить</button>
        </div>
     </form>
+
 </div>
 @endsection
