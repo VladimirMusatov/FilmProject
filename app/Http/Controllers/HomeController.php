@@ -54,9 +54,8 @@ class HomeController extends Controller
         $category = Category::where('slug', $slug)->first();
         $category_id = $category['id'];
 
-        $films  = Film::where('category_id', $category_id)->get();
+        $films  = Film::where('category_id', $category_id)->paginate();
 
         return view('catalog',compact('films'));
     }
-
 }

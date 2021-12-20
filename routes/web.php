@@ -45,7 +45,7 @@ Route::group(['middleware' =>['role:admin']], function(){
     Route::get('/edit/{id}',[AdminController::class, 'edit'])->name('edit');
     //Добавление Подробностей
     Route::post('/update',[AdminController::class, 'update'])->name('update');
-    Route::get('/addDet',[AdminController::class, 'addDet'])->name('addDet');
+    Route::get('/addDet/{id}',[AdminController::class, 'addDet'])->name('addDet');
     //Сохранение фильма
     Route::post('/store',[AdminController::class, 'store'])->name('store');
     //Сохранение дополнительной информации о фильме

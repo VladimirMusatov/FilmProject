@@ -32,14 +32,14 @@
       <!-- Подробности -->
       <td>
          <div class="col">
-         <form action="{{route('addDet')}}">   
-            <input type="hidden" name="Film" value="{{$film->id}}">
-            <button type="submit" class="btn btn-dark">Добавить подробности</button>
-          </form>
+            @if($film->status == 0)
+            <a class="btn btn-dark" href="{{route('addDet',$film->id)}}">Добавить подробности</a>
+            @else 
+               Все подробности добавленны
+            @endif
          </div>
       </td>
-      <!-- Серии -->
-      <td>  
+      <td>
          <form action="{{route('edit',$film->id)}}">
          <button type="submit" class="btn btn-warning">Изменить</button>
          </form>

@@ -26,7 +26,7 @@
    @foreach($films as $film)
   <div class="catalog-item mb-5">
       <div class="catalog-img">
-         <a href="{{route('show',$film->id)}}"><img class="catalog-image" src="{{ Storage::url('image/films/'.$film->image) }}" alt="Photo"></a>
+         <a href="{{route('show',$film->id)}}"><img class="catalog-image" src="{{Storage::url('image/films/'.$film->image) }}" alt="Photo"></a>
       </div>
       <div class="catalog-text">
          <h1 class="main-title"><a class="catalog-link" href="{{route('show',$film->id)}}">{{$film->title}}</a></h1>

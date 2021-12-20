@@ -13,12 +13,8 @@ class Status extends Migration
      */
     public function up()
     {
-        Schema::table('det_films', function (Blueprint $table){
-            $table->boolean('status')->default(false);
-        });
-
-        Schema::table('det_serials', function (Blueprint $table){
-            $table->boolean('status')->default(false);
+        Schema::table('films', function (Blueprint $table){
+            $table->boolean('status')->default(false)->after('category_id');
         });
     }
 

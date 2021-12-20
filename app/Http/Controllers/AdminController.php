@@ -36,11 +36,9 @@ class AdminController extends Controller
   
     }
 
-    public function addDet(Request $request)
-    {
-        $film_id = $request->Film;  
-
-        $film = Film::where('id', $film_id)->get(['id' => 'id','category_id' => 'category_id',]);
+    public function addDet(Request $request, $id)
+    {  
+        $film = Film::where('id', $id)->get(['id' => 'id','category_id' => 'category_id',]);
 
         return view ('add_det',compact('film'));
     }
@@ -48,6 +46,10 @@ class AdminController extends Controller
     public function store(Request $request)
     {
     
+            $validate = $request->validate([
+                'category_id' => 'integer',
+            ]);
+
             $data = $request->all(); 
 
             $filename = $data['image']->getClientOriginalName();
@@ -62,15 +64,24 @@ class AdminController extends Controller
     }
 
     public function saveDetFilm(Request $request)
-    {
-        DetFilm::create($request->all());
+    {   
+        $validate = $request->validate([
+            'film_id' => 'unique:App\Models\DetFilm,film_id',
+        ]);
+
+        DetFilm::create($request->only('director','duration','film_id'));
+
+        Film::where('id',$request->film_id)->update(['status' => $request->status]);
 
         return redirect('admin');
     }
 
     public function saveDetSerial(Request $request)
     {
-        DetSerial::create($request->all());
+
+        DetSerial::create($request->only('season', 'episodes','film_id'));
+
+        Film::where('id',$request->film_id)->update(['status' => $request->status]);
 
         return redirect('admin');
     }
