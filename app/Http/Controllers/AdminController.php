@@ -28,12 +28,23 @@ class AdminController extends Controller
     {   
         $film = Film::where('id', $id)->get();
 
-        return view ('edit',compact('film'));
+        return view ('edit',['film'=>$film]);
     }
 
-    public function update(Request $request, Film $film)
+    public function update(Request $request)
     {
-  
+        if($request->category_id == 1 || $request->category_id == 3)
+        {
+            DetFilm::where('id', $request->film_id)->updateOrInsert(['director'=>$request->director, 'duration'=>$request->duration,'film_id'=>$request->film_id,]);
+        }
+        else
+        {
+            DetSerial::where('id', $request->film_id)->updateOrInsert(['season'=>$request->season,'episodes'=>$request->episodes, 'film_id'=>$request->film_id,]);
+        }
+
+            Film::where('id', $request->id)->update(['title'=>$request->title,'OrigTitle'=>$request->OrigTitle,'description'=>$request->description,'CreatDate'=>$request->CreatDate, 'status' => 1]);
+
+            return redirect('admin');
     }
 
     public function addDet(Request $request, $id)
