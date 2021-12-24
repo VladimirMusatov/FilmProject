@@ -66,7 +66,13 @@ class AdminController extends Controller
     public function store(Request $request)
     {
             $validate = $request->validate([
-                'title' => 'unique:films',
+
+                'title' => 'unique:films|required',
+                'OrigTitle' => 'required',
+                'CreatDate' => 'required', 
+                'description' => 'required',
+                'image' => 'required',
+                'link' =>  'required',
                 'category_id' => 'integer',
             ]);
 

@@ -39,29 +39,23 @@
 
 <!-- Секция коментариев -->
 <div class="container">
-  <button class="btn btn-dark mb-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-    Оставить коментарий
-  </button>
-  <!-- Остваить коментарий -->
-	<div class="collapse" id="collapseExample">
-		<div class="card border-secondary w-100">
-	  		<div class="card card-body text-secondary">
-	  			<h5 class="card-title">Ваш комментарий</h5>
+  <!-- Остaвить коментарий -->
 	  			<form method="POST" action="{{route('saveComment')}}">
 	  				@csrf
 	  				<input value="{{$kino->id}}" type="hidden" name="film_id">
 	  				<input value="{{Auth::user()->id}}" type="hidden" name="user_id">
-	  				<textarea name="text" class="card-text" style="width: 100%; margin-bottom: -20px;"></textarea>
-	  				<button type="submit" class="btn btn-secondary mt-4">Оставить отзыв</button>
+	  				<textarea name="text" class="card-text form-control" style="width: 100%; margin-bottom: -20px;"></textarea>
+	  				<button type="submit" class="btn btn-secondary mt-4">Составить своё мнение</button>
 	  			</form>
-	  		</div>
-	  	</div>
-	</div>
+
   <!-- Вывод коментариев -->
   @foreach($kino->comment as $comment)
   <div class="card mt-3" style="width: 80%">
+  <div class="card-header">
+  	    <p class="card-subtitle mb-2 text-muted">{{$comment->user->name}}</p>
+  	    <p>{{$comment->created_at}}</p>
+  </div>
   <div class="card-body">
-    <p class="card-subtitle mb-2 text-muted">{{$comment->user->name}}</p>
     <p class="card-text">{{$comment->text}}</p>
   </div>
 </div>
