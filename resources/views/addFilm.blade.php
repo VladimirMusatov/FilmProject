@@ -3,10 +3,20 @@
 @section('content')
 
 <div class="container">
-
-   <form  method="POST" style="width: 50%; margin:  0 auto;" action="{{route('store')}}" enctype="multipart/form-data">
+   <form class="mt-3"  method="POST" style="width: 50%; margin:  0 auto;" action="{{route('store')}}" enctype="multipart/form-data">
       @csrf
-        <div class="mb-3 row g-3 align-items-center">
+
+    @if ($errors->any())
+      <div class="alert alert-danger" >
+        <ul>
+          @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+          @endforeach
+        </ul>
+      </div>
+    @endif
+
+        <div class="mb-3 mt-3 row g-0 align-items-center">
         <select name="category_id" class="form-select col-auto" style=" width:  50%;" aria-label="Default select example" required>
           <option>Выберете категорию</option>
           <option value="1">Кино</option>
@@ -15,6 +25,7 @@
           <option value="4">Мультсериал</option>
           <option value="5">Аниме</option>
         </select>
+       </div>
 
        <div class="mb-3">
          <label class="form-label">Название</label>
@@ -41,8 +52,8 @@
           <label class="form-label">Ссылка на источник</label>
           <input type="text" name="link" class="form-control" aria-describedby="Ссылка на источник" required> 
         </div>
-         <button class="btn btn-secondary  col-auto" type="submit">Добавить</button>
-       </div>
+         <button class="btn btn-secondary mt-3 col-auto" type="submit">Добавить</button>
+
     </form>
 
 </div>

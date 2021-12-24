@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Models\Film;
 use App\Models\DetFilm;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\User;
 
 class HomeController extends Controller
@@ -23,16 +23,21 @@ class HomeController extends Controller
 
     public function catalog(Request $request)
     {
-
-        $films = Film::paginate(4);
-
-        return view('catalog',compact('films'));
+        if(isset($request->search))
+        {
+            $films = Film::where('title','LIKE',"%{$request->search}%")->orderBy('title')->paginate(4);
+        }
+        else
+        {
+            $films = Film::paginate(4);
+        }
+            return view('catalog',compact('films'));
     }
 
     public function random()
     {
 
-        $end = DB::table('films')->count();
+        $end = Film::all()->count();
         $rand = rand(1 , $end);
 
         $kino = Film::where('id', $rand)->get();
@@ -54,8 +59,18 @@ class HomeController extends Controller
         $category = Category::where('slug', $slug)->first();
         $category_id = $category['id'];
 
-        $films  = Film::where('category_id', $category_id)->paginate();
+        $films  = Film::where('category_id', $category_id)->paginate(4);
 
         return view('catalog',compact('films'));
     }
+
+    public function saveComment(Request $request)
+    {
+        Comment::create($request->all());
+
+        $id = $request->film_id;
+
+        return redirect('/show/'.$id);
+    }
+
 }

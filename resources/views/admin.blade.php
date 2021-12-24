@@ -3,9 +3,15 @@
 @section('content')
 <div class="container">
 
-<div class="admin-display row">
-   <div class="col">
-      <a class="btn btn-dark admin-btn" href="{{route('addFilm')}}">Добавить</a>
+<div class="admin-display">
+   <div class="admin-display-item">
+      <form action="{{route('admin')}}">
+      <button class="btn-dark admin-btn" type="submit">Поиск</button>
+      <input class="admin-search" type="text" name="search" value="{{request()->search}}" placeholder="search">
+      </form>
+   </div>
+   <div class="admin-display-item">
+      <a class="btn-dark admin-btn-link" href="{{route('addFilm')}}">Добавить контент</a>
    </div>
 </div>
 
@@ -48,7 +54,9 @@
    @endforeach
   </tbody>
 </table>
-
+   <div style="display: flex; justify-content: center;">
+      {{ $films->links() }}
+   </div> 
 </div>
 @endsection
 

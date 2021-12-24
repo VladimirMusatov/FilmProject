@@ -7,14 +7,23 @@ use App\Models\Film;
 use App\Models\DetFilm;
 use App\Models\DetSerial;
 use App\Models\Serial;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 class AdminController extends Controller
 {
+
     public function admin(Request $request){
 
-        $films = Film::all();
+        if(isset($request->search))
+        {
+            $films = Film::where('title','LIKE',"%{$request->search}%")->orderBy('title')->paginate(10);
+        }
+        else
+        {
+            $films = Film::paginate(10);
+        }
 
         return view('admin', compact('films'));
     }
@@ -56,8 +65,8 @@ class AdminController extends Controller
 
     public function store(Request $request)
     {
-    
             $validate = $request->validate([
+                'title' => 'unique:films',
                 'category_id' => 'integer',
             ]);
 

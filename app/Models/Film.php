@@ -31,5 +31,10 @@ class Film extends Model
         return $this->hasOne(DetSerial::class);
     }
 
+    public function comment()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
 }
  

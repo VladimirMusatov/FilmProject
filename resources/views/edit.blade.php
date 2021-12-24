@@ -25,7 +25,7 @@
        </div>
        <div class="mb-3">
          <label class="form-label">Описание</label>
-         <textarea type="text" name="description" style="height: 300px" class="form-control" placeholder="{{$film->description}}" required></textarea>
+         <textarea type="text" name="description" style="height: 300px" class="form-control" placeholder="{{$film->description}}" required>{{$film->description}}</textarea>
        </div>
        <div class="mb-3">
           <label class="form-label">Добавить изображение</label>

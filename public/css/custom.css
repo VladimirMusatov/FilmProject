@@ -119,9 +119,26 @@
 
 /*Админка*/
 
-.admin-btn{
-	height: 40px;
+.admin-btn,
+.admin-btn-link{
+  text-align: center;
+  text-decoration: none;
+  border: 1px solid transparent;
+  padding: -0.600rem 0.75rem;
+  font-size: 0.9rem;
+  border-radius: 0.25rem;
+	position: relative;
+	bottom: 2px;
+}
 
+.admin-btn-link{
+ margin-right: 60px;
+ padding: 3px 5px;
+}
+
+.admin-search{
+	position: relative;
+	bottom:2px;
 }
 
 .admin-display{
