@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Events\PostHasViewed;
 use App\Models\Film;
 use App\Models\DetFilm;
 use App\Models\Category;
@@ -23,12 +24,20 @@ class HomeController extends Controller
 
     public function catalog(Request $request)
     {
-        if(isset($request->search))
+        if(isset($request->mostpopular))
+        {
+            $films = Film::query()->orderBy('view_count' , 'desc')->paginate(4);
+        }
+        elseif(isset($request->newrelease))
+        {   
+            $films = Film::query()->orderBy('CreatDate', 'asc')->paginate(4);
+        }
+        elseif(isset($request->search))
         {
             $films = Film::where('title','LIKE',"%{$request->search}%")->orderBy('title')->paginate(4);
         }
         else
-        {
+        {    
             $films = Film::paginate(4);
         }
             return view('catalog',compact('films'));
@@ -45,13 +54,12 @@ class HomeController extends Controller
         return view('show', compact('kino'));
     }
 
-    public function show(Request $request ,$id)
+    public function show($id)
     {   
-        $link = $request->video;
-
-        $kino = Film::where('id',$id)->get();
-
-        return view('show',['kino'=>$kino,'link'=>$link]);
+        $film = Film::findOrFail($id);
+        event(new PostHasViewed($film));
+        $film = $film->where('id',$id)->get();
+        return view('show',['kino'=>$film]);
     }
 
     public function SortByCat($slug)

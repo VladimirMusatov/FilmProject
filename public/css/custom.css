@@ -14,7 +14,10 @@
 }
 
 .catalog-text{
+}
 
+.catalog-card{
+	display: flex;
 }
 
 .catalog-filtr{

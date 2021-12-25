@@ -49,10 +49,10 @@
        </div>
         <div>
           <label class="form-label">Ссылка на источник</label>
-          <input  value="{{old('link')}}" type="text" name="link" class="form-control" aria-describedby="Ссылка на источник"> 
+          <input  value="{{old('link')}}" type="text" name="link" class="form-control" aria-describedby="Ссылка на источник">
+          <p style="font-size: 12px;">Источник можно получить на <a href="https://videocdn.tv/">VideoCDN</a></p>
         </div>
          <button class="btn btn-secondary mt-3 col-auto" type="submit">Добавить</button>
-
     </form>
 
 </div>

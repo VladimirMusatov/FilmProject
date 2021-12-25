@@ -11,6 +11,7 @@
 			   		<h1 class="main-title show-title">{{$kino->title}}</h1>
 			   		<h4 class="show-orig-title">{{$kino->OrigTitle}}</h4>
 			   		<p>Тип: {{$kino->category->title}}</p>
+			   		<p>Количество просмотров: {{$kino->view_count}}</p>
 			   		@if(isset($kino->DetFilm) || isset($kino->DetSerial))
 			   			@if(($kino->category->id) == 1 ||($kino->category->id) == 3 )
 			   			<p>Режиссер: {{$kino->DetFilm->director}}</p>
@@ -39,24 +40,29 @@
 
 <!-- Секция коментариев -->
 <div class="container">
+	<h3>Секция Комментариев</h3>
+	@guest
+			<p>Войдите что-бы оставить коментарий</p>
+	@else
   <!-- Остaвить коментарий -->
 	  			<form method="POST" action="{{route('saveComment')}}">
 	  				@csrf
 	  				<input value="{{$kino->id}}" type="hidden" name="film_id">
 	  				<input value="{{Auth::user()->id}}" type="hidden" name="user_id">
-	  				<textarea name="text" class="card-text form-control" style="width: 100%; margin-bottom: -20px;"></textarea>
-	  				<button type="submit" class="btn btn-secondary mt-4">Составить своё мнение</button>
+	  				<textarea name="text" class="card-text form-control mb-1" style="width: 100%;margin-bottom: -20px;"></textarea>
+	  				<button type="submit" class="btn btn-secondary mt-3">Составить своё мнение</button>
 	  			</form>
-
+	@endguest
+<hr>	
   <!-- Вывод коментариев -->
   @foreach($kino->comment as $comment)
   <div class="card mt-3" style="width: 80%">
-  <div class="card-header">
-  	    <p class="card-subtitle mb-2 text-muted">{{$comment->user->name}}</p>
-  	    <p>{{$comment->created_at}}</p>
+  <div class="card-header" style="display: flex; justify-content:space-between;">
+  	    <p class="card-subtitle text-muted">{{$comment->user->name}}</p>
+  	    <p class="card-subtitle text-muted">{{$comment->created_at}}</p>
   </div>
   <div class="card-body">
-    <p class="card-text">{{$comment->text}}</p>
+    <p style="margin-left: 15px" class="card-text">{{$comment->text}}</p>
   </div>
 </div>
   @endforeach	

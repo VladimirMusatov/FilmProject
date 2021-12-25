@@ -10,16 +10,32 @@
       <input type="text" name="search" value="{{request()->search}}" placeholder="search">
       <button class="btn catalog-btn" type="submit">Поиск</button>
    </form>
+
+<!-- Фильтрация -->
+  <button class="btn catalog-btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+   Фильтрация
+  </button>
+ </div>
+<div class="collapse" id="collapseExample">
+  <div class="mt-2 catalog-card">
+   <a class="btn catalog-btn"  href="{{route('categories','Kino')}}">Кино</a>
+   <a class="btn catalog-btn"  href="{{route('categories','Serial')}}">Сериалы</a>
+   <a class="btn catalog-btn"  href="{{route('categories','Cartoon')}}">Мультфильмы</a>
+   <a class="btn catalog-btn"  href="{{route('categories','Animated_series')}}">Мультсериалы</a>
+   <a class="btn catalog-btn"  href="{{route('categories','Anime')}}">Аниме</a>
    <form action="{{route('catalog')}}">
-      <input type="hidden" name="newrelease"> 
+      <input type="hidden" value="true" name="newrelease"> 
       <button class="btn catalog-btn" type="submit">Новинки</button>
    </form>
-   <form action="{{route('catalog')}}">
-      <input type="hidden" name="mostpopular">
+   <form class="" action="{{route('catalog')}}">
+      <input type="hidden" value="true" name="mostpopular">
       <button class="btn catalog-btn" type="submit">Самые популярные</button>
    </form>
    <a class="btn catalog-btn" href="{{route('catalog')}}">Сбросить фильтры</a> 
- </div>
+   </div>
+</div>
+
+
 
 
    <hr>
