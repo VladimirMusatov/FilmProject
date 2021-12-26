@@ -20,6 +20,10 @@ class AdminController extends Controller
         {
             $films = Film::where('title','LIKE',"%{$request->search}%")->orderBy('title')->paginate(10);
         }
+        elseif(isset($request->nonedet))
+        {
+            $films = Film::where('status',0)->paginate(10);
+        }
         else
         {
             $films = Film::paginate(10);
@@ -51,7 +55,12 @@ class AdminController extends Controller
             DetSerial::where('id', $request->film_id)->updateOrInsert(['season'=>$request->season,'episodes'=>$request->episodes, 'film_id'=>$request->film_id,]);
         }
 
-            Film::where('id', $request->id)->update(['title'=>$request->title,'OrigTitle'=>$request->OrigTitle,'description'=>$request->description,'CreatDate'=>$request->CreatDate, 'status' => 1]);
+            $data = $request->all(); 
+            $filename = $data['image']->getClientOriginalName();
+            $data['image']->move(Storage::path('/public/image/').'films/',$filename);   
+            $data['image'] = $filename;
+
+            Film::where('id', $request->id)->update(['title'=>$data['title'],'OrigTitle'=>$data['OrigTitle'],'description'=>$data['description'],'image'=>$data['image'],'CreatDate'=>$data['CreatDate'], 'status' => 1]);
 
             return redirect('admin');
     }

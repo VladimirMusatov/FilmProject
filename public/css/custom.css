@@ -24,6 +24,16 @@
 	display: flex;
 }
 
+@media (max-width: 767.98px) {
+	.catalog-card{
+		display: grid;
+		grid-template-rows: auto;
+	}
+	.form-catalog-btn{
+		width: 486px;
+	}
+}
+
 .catalog-btn{
 	margin-top: 1px;
 	margin-left: 1px;
@@ -48,23 +58,19 @@
 }
 
 .catalog-category{
-	color: :;
 	margin: 5px 0;
 }
 
 /*Главная страница*/
-
 .main-title{
-	margin-bottom:-7px ;
+
 }
 
 .main-description{
 	
 }
 
-/*Страница просмотра*/
-
-/*Страница просмора фильма фильма*/
+/*Страница просмора фильма*/
 
 .show-container{
 	margin-top: -23px;
@@ -110,15 +116,7 @@
  	width: 40%;
  }
 }
-@media (max-width: 991.98px) {
 
-}
-@media (max-width: 1199.98px) {
-
-}
-@media (max-width: 1399.98px) {
-
-}
 
 /*Админка*/
 
@@ -148,3 +146,16 @@
 	display: flex;
 	justify-content: space-between;
 }
+
+.left-admin-display-item{
+	display: 	flex	;
+}
+
+.admin-display-item{
+	margin-right: 4px;
+}
+
+@media (max-width: 767.98px) {
+		
+}
+

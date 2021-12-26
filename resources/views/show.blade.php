@@ -23,7 +23,6 @@
 			   		@endif
 			   		<p>Дата Выхода: {{$kino->CreatDate}}</p>
 			   	</div>
-
 		</div>
 		<hr>
 			<div class="show-descrption">
@@ -56,10 +55,10 @@
 <hr>	
   <!-- Вывод коментариев -->
   @foreach($kino->comment as $comment)
-  <div class="card mt-3" style="width: 80%">
+	   <div class="card mt-3" style="width: 80%">
   <div class="card-header" style="display: flex; justify-content:space-between;">
   	    <p class="card-subtitle text-muted">{{$comment->user->name}}</p>
-  	    <p class="card-subtitle text-muted">{{$comment->created_at}}</p>
+  	    <p class="card-subtitle text-muted">{{\Carbon\Carbon::parse($comment->created_at)->locale('ru')->isoFormat('Do MMMM H:m')}}</p>
   </div>
   <div class="card-body">
     <p style="margin-left: 15px" class="card-text">{{$comment->text}}</p>

@@ -25,11 +25,11 @@
    <a class="btn catalog-btn"  href="{{route('categories','Anime')}}">Аниме</a>
    <form action="{{route('catalog')}}">
       <input type="hidden" value="true" name="newrelease"> 
-      <button class="btn catalog-btn" type="submit">Новинки</button>
+      <button class="btn form-catalog-btn catalog-btn" type="submit">Новинки</button>
    </form>
    <form class="" action="{{route('catalog')}}">
       <input type="hidden" value="true" name="mostpopular">
-      <button class="btn catalog-btn" type="submit">Самые популярные</button>
+      <button class="btn form-catalog-btn catalog-btn" type="submit">Самые популярные</button>
    </form>
    <a class="btn catalog-btn" href="{{route('catalog')}}">Сбросить фильтры</a> 
    </div>
