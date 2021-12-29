@@ -38,20 +38,20 @@
        @if($film->category_id == 1 || $film->category_id == 3)
        <div class="mb-3">
          <label class="form-label">Режиссер</label>
-         <input type="text" name="director" class="form-control" required>
+         <input type="text" name="director" @if(isset($film->DetFilm->director)) value="{{$film->DetFilm->director}}" @endif class="form-control">
        </div>
        <div class="mb-3">
          <label class="form-label">Продолжительность</label>
-         <input type="text" name="duration" class="form-control" required>
+         <input type="text" name="duration" @if(isset($film->DetFilm->duration)) value="{{$film->DetFilm->duration}}" @endif class="form-control">
        </div>
        @else
        <div class="mb-3">
          <label class="form-label">Количесвто серий</label>
-         <input type="text" name="episodes" class="form-control" required>
+         <input type="text" name="episodes" @if(isset($film->DetSerial->episodes)) value="{{$film->DetSerial->episodes}}" @endif class="form-control">
        </div>
        <div class="mb-3">
          <label class="form-label">Количесвто сезонов</label>
-         <input type="text" name="season" class="form-control"  required>
+         <input type="text" name="season" @if(isset($film->DetSerial->season)) value="{{$film->DetSerial->season}}" @endif class="form-control">
        </div>
        @endif
          <button class="btn btn-warning mt-3 col-auto" type="submit">Изменить</button>
