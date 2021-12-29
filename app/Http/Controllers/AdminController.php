@@ -54,8 +54,14 @@ class AdminController extends Controller
         {
             DetSerial::where('id', $request->film_id)->updateOrInsert(['season'=>$request->season,'episodes'=>$request->episodes, 'film_id'=>$request->film_id,]);
         }
-
             $data = $request->all(); 
+
+            // Удаление старой фотографии
+            $img = Film::where('id',$request->id)->first('image');
+            $path = 'public/image/films/'.$img['image'];
+            $file = Storage::delete($path);
+
+            //Сохранение новой фотографии
             $filename = $data['image']->getClientOriginalName();
             $data['image']->move(Storage::path('/public/image/').'films/',$filename);   
             $data['image'] = $filename;

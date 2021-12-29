@@ -19,7 +19,7 @@
         <div class="mb-3 mt-3 row g-0 align-items-center">
         <select name="category_id" class="form-select col-auto" style=" width:  50%;" aria-label="Default select example">
           <option>Выберете категорию</option>
-          <option @if((old('category_id')) == 1)selected @endif value="1">Кино</option>
+          <option @if((old('category_id') == 1)selected @endif value="1">Кино</option>
           <option @if((old('category_id')) == 2)selected @endif value="2">Сериал</option>
           <option @if((old('category_id')) == 3)selected @endif  value="3">Мультфильм</option>
           <option @if((old('category_id')) == 4)selected @endif  value="4">Мультсериал</option>

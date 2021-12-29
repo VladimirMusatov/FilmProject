@@ -34,10 +34,6 @@
    <a class="btn catalog-btn" href="{{route('catalog')}}">Сбросить фильтры</a> 
    </div>
 </div>
-
-
-
-
    <hr>
    @foreach($films as $film)
   <div class="catalog-item mb-5">
