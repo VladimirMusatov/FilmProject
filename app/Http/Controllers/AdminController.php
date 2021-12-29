@@ -9,7 +9,6 @@ use App\Models\DetSerial;
 use App\Models\Serial;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
 
 class AdminController extends Controller
 {
@@ -46,12 +45,34 @@ class AdminController extends Controller
 
     public function update(Request $request)
     {
+            $validate = $request->validate([
+
+                'title' => 'required',
+                'OrigTitle' => 'required',
+                'CreatDate' => 'required', 
+                'description' => 'required',
+                'image' => 'required',
+                'link' =>  'required',
+                'category_id' => 'integer',
+            ]);
+
+
         if($request->category_id == 1 || $request->category_id == 3)
         {
+            $validate = $request->validate([
+                'director' => 'required',
+                'duration' => 'required',
+            ]);
+
             DetFilm::where('id', $request->film_id)->updateOrInsert(['director'=>$request->director, 'duration'=>$request->duration,'film_id'=>$request->film_id,]);
         }
         else
         {
+           $validate = $request->validate([
+                'season' => 'required|integer',
+                'episodes' => 'required|integer',
+            ]);
+
             DetSerial::where('id', $request->film_id)->updateOrInsert(['season'=>$request->season,'episodes'=>$request->episodes, 'film_id'=>$request->film_id,]);
         }
             $data = $request->all(); 
@@ -68,7 +89,7 @@ class AdminController extends Controller
 
             Film::where('id', $request->id)->update(['title'=>$data['title'],'OrigTitle'=>$data['OrigTitle'],'description'=>$data['description'],'image'=>$data['image'],'CreatDate'=>$data['CreatDate'], 'status' => 1]);
 
-            return redirect('admin');
+            return redirect('admin')->with('success','Данные измененны');
     }
 
     public function addDet(Request $request, $id)
@@ -81,7 +102,6 @@ class AdminController extends Controller
     public function store(Request $request)
     {
             $validate = $request->validate([
-
                 'title' => 'unique:films|required',
                 'OrigTitle' => 'required',
                 'CreatDate' => 'required', 
@@ -101,7 +121,7 @@ class AdminController extends Controller
 
             Film::create($data);
 
-            return redirect('admin');
+            return redirect('admin')->with('success','Контент был успешно добавлен');
     }
 
     public function saveDetFilm(Request $request)

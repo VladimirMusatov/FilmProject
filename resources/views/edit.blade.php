@@ -3,6 +3,17 @@
 @section('content')
 <div class="container">
 @foreach($film as $film)
+
+    @if ($errors->any())
+      <div class="alert alert-danger" style="width:50%; margin: 0 auto;">
+        <ul>
+          @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+          @endforeach
+        </ul>
+      </div>
+    @endif
+
    <form  method="POST" style="margin: 0 auto; width: 50%"  action="{{route('update')}}" enctype="multipart/form-data">
       @csrf
        <div class="mb-3">
