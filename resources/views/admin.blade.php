@@ -14,7 +14,7 @@
       <div class="admin-display-item" style="position:relative; top:1px;" >
             <form action="{{route('admin')}}">
             <input type="hidden" name="nonedet" value="true">
-            <button class="btn-dark admin-btn" type="submit">Фильмы без подробностей</button>   
+            <button class="btn-dark admin-btn" type="submit">Контент без подробностей</button>   
             </form> 
       </div>
       <div class="admin-display-item">
@@ -63,7 +63,7 @@
         <h5 class="modal-title" id="exampleModalLabel">Подтвердите действие</h5>
       </div>
       <div class="modal-body">
-        Вы уверены что хотите удалить "{{$film->title}}" из библиотеки
+        Вы уверены что хотите удалить "{{$film->title}}" из библиотеки?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
@@ -96,4 +96,3 @@
    </div> 
 </div>
 @endsection
-

@@ -30,7 +30,7 @@ class HomeController extends Controller
         }
         elseif(isset($request->newrelease))
         {   
-            $films = Film::query()->orderBy('CreatDate', 'asc')->paginate(4);
+            $films = Film::query()->orderBy('Premiere_date', 'desc')->paginate(4);
         }
         elseif(isset($request->search))
         {

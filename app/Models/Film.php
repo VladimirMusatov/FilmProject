@@ -14,7 +14,7 @@ class Film extends Model
       'description', 
       'image',
       'OrigTitle',
-      'CreatDate',
+      'Premiere_date',
       'category_id',
       'link',
     ];

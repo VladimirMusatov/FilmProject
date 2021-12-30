@@ -32,7 +32,7 @@
        </div>
        <div class="mb-3">
          <label class="form-label">Дата Выхода</label>
-         <input type="text"  value="{{$film->CreatDate}}" name="CreatDate" class="form-control" aria-describedby="12.06.2001" placeholder="{{$film->CreatDate}}">
+         <input type="date" name="Premiere_date" value="{{$film->Premiere_date}}" class="form-control" aria-describedby="12.06.2001">
        </div>
        <div class="mb-3">
          <label class="form-label">Описание</label>
@@ -40,7 +40,7 @@
        </div>
        <div class="mb-3">
           <label class="form-label">Добавить изображение</label>
-          <input type="file" class="form-control-file" name="image">
+          <input type="file" class="form-control-file" value="{{$film->image}}" name="image">
        </div>
         <div>
           <label class="form-label">Ссылка на источник</label>

@@ -18,7 +18,6 @@ class CreateFilmsTable extends Migration
             $table->integer('category_id');
             $table->string('title');
             $table->string('OrigTitle')->comment('Оригинальное название');
-            $table->string('CreatDate')->comment('Дата выхода');
             $table->text('description');
             $table->string('image');
             $table->timestamps();

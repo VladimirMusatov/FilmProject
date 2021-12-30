@@ -35,6 +35,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <a class="nav-link" href="{{route('catalog')}}">Каталог</a>
+                        <a class="nav-link" href="#">Подборки от пользователей</a>
                         <a class="nav-link" href="{{route('random')}}">Случайный фильм</a>
                     </ul>
 

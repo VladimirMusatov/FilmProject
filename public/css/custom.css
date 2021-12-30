@@ -159,3 +159,95 @@
 		
 }
 
+/*Секция Home*/
+.home-body{
+	margin-top: -23px;
+	background-color: #E5E5E5;
+}
+
+.home-main-section{
+	display: flex;
+	justify-content: space-between;
+}
+
+.home-center-section{
+	margin-top: 40px;
+	width: 790px;
+	background-color: #fff;
+	margin-bottom: 15px;
+}
+
+.home-center-card{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	border-radius: 5px ;
+	width: 30%;
+	background-color:#E9F0F8;
+	height: 150px;
+	margin:20px auto;
+
+}
+
+.home-statistic{
+	display: flex;
+	justify-content: space-between;
+}
+
+.home-right-section{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.home-person-block{
+	margin-top: 40px;
+	background-color: #fff;
+	border-radius: 2px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	margin-bottom: 25px;
+}
+
+.person-icon-bloc{
+	position: relative;
+	bottom: 55px;
+	margin-bottom: -55px;
+}
+
+.person-icon{
+	display: flex;
+	justify-content: center;
+	border: 3px solid	#ffffff;
+	border-radius: 200px;
+	width: 145px;
+}
+.person-text{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+.person-description{
+	text-align: center;
+	width: 200px;
+}
+.person-recomend{
+	width: 100%;
+	background-color: #ffffff;
+}
+.person-recomend-header{
+	margin: 5px 10px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.home-btn{
+	width: 100%;
+	background-color: #E9F0F8;
+	margin-bottom: 15px;
+}

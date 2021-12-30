@@ -49,7 +49,7 @@ class AdminController extends Controller
 
                 'title' => 'required',
                 'OrigTitle' => 'required',
-                'CreatDate' => 'required', 
+                'Premiere_date' => 'required', 
                 'description' => 'required',
                 'image' => 'required',
                 'link' =>  'required',
@@ -87,7 +87,7 @@ class AdminController extends Controller
             $data['image']->move(Storage::path('/public/image/').'films/',$filename);   
             $data['image'] = $filename;
 
-            Film::where('id', $request->id)->update(['title'=>$data['title'],'OrigTitle'=>$data['OrigTitle'],'description'=>$data['description'],'image'=>$data['image'],'CreatDate'=>$data['CreatDate'], 'status' => 1]);
+            Film::where('id', $request->id)->update(['title'=>$data['title'],'OrigTitle'=>$data['OrigTitle'],'description'=>$data['description'],'image'=>$data['image'],'CreatDate'=>$data['CreatDate'],'Premiere_date'=>$data['Premiere_date'], 'status' => 1]);
 
             return redirect('admin')->with('success','Данные измененны');
     }
@@ -104,7 +104,7 @@ class AdminController extends Controller
             $validate = $request->validate([
                 'title' => 'unique:films|required',
                 'OrigTitle' => 'required',
-                'CreatDate' => 'required', 
+                'Premiere_date' => 'required', 
                 'description' => 'required',
                 'image' => 'required',
                 'link' =>  'required',

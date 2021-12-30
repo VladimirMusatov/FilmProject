@@ -19,7 +19,7 @@
         <div class="mb-3 mt-3 row g-0 align-items-center">
         <select name="category_id" class="form-select col-auto" style=" width:  50%;" aria-label="Default select example">
           <option>Выберете категорию</option>
-          <option @if((old('category_id') == 1)selected @endif value="1">Кино</option>
+          <option @if((old('category_id')) == 1)selected @endif value="1">Кино</option>
           <option @if((old('category_id')) == 2)selected @endif value="2">Сериал</option>
           <option @if((old('category_id')) == 3)selected @endif  value="3">Мультфильм</option>
           <option @if((old('category_id')) == 4)selected @endif  value="4">Мультсериал</option>
@@ -37,13 +37,13 @@
        </div>
        <div class="mb-3">
          <label class="form-label">Дата Выхода</label>
-         <input value="{{old('CreatDate')}}" type="text" name="CreatDate" class="form-control" aria-describedby="12.06.2001">
+         <input type="date" value="{{old('Premiere_date')}}" name="Premiere_date" class="form-control" aria-describedby="12.06.2001">
        </div>
        <div class="mb-3">
          <label class="form-label">Описание</label>
          <textarea type="text" name="description" style="height: 300px" class="form-control">{{old('description')}}</textarea>
        </div>
-       <div class="mb-3">
+       <div class="mb-3" style="display:flex; justify-content: center; align-content: center; flex-direction: column;">
           <label class="form-label">Добавить изображение</label>
           <input type="file" class="form-control-file" name="image">
        </div>

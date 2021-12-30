@@ -21,7 +21,8 @@
 			   			<p>Количество сезонов: {{$kino->DetSerial->season}}</p>
 			   			@endif
 			   		@endif
-			   		<p>Дата Выхода: {{$kino->CreatDate}}</p>
+			   		<p>Дата Выхода: {{\Carbon\Carbon::parse($kino->Premiere_date)->locale('ru')->isoFormat('D MMMM Y')}}</p>
+
 			   	</div>
 		</div>
 		<hr>
@@ -43,14 +44,36 @@
 	@guest
 			<p>Войдите что-бы оставить коментарий</p>
 	@else
-  <!-- Остaвить коментарий -->
-	  			<form method="POST" action="{{route('saveComment')}}">
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-secondary mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Составить своё мнение
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Добавление комментария</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+	  			<form id="comment" method="POST" action="{{route('saveComment')}}">
 	  				@csrf
 	  				<input value="{{$kino->id}}" type="hidden" name="film_id">
 	  				<input value="{{Auth::user()->id}}" type="hidden" name="user_id">
 	  				<textarea name="text" class="card-text form-control mb-1" style="width: 100%;margin-bottom: -20px;"></textarea>
-	  				<button type="submit" class="btn btn-secondary mt-3">Составить своё мнение</button>
 	  			</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+        <button type="submit" form="comment" class="btn btn-secondary">Оставить комментарий</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- Остaвить коментарий -->
+
 	@endguest
 <hr>	
   <!-- Вывод коментариев -->
