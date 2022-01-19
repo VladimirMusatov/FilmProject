@@ -17,9 +17,13 @@ class HomeController extends Controller
         return view('index');
     }
 
-    public function home()
-    {
-        return view('home');
+    public function home(Request $request)
+    {   
+        $user_id = $request->user_id;
+
+        $user = User::where('id', $user_id)->get();
+
+        return view('home',['users'=>$user]);
     }
 
     public function catalog(Request $request)

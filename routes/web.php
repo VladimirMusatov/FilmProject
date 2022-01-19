@@ -32,7 +32,7 @@ Route::post('/saveComment',[HomeController::class,'saveComment'])->name('saveCom
 //Роуты доступные лишь зарегестрированным пользователям
 Route::group(['middleware'=>['role:user|admin']],function(){
 
-    Route::get('/home',[HomeController::class, 'home'])->name('home');
+    Route::post('/home/{id}',[HomeController::class, 'home'])->name('home');
 
 });
 

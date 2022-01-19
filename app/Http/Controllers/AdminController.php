@@ -45,8 +45,7 @@ class AdminController extends Controller
 
     public function update(Request $request)
     {
-            $validate = $request->validate([
-
+        $validate = $request->validate([
                 'title' => 'required',
                 'OrigTitle' => 'required',
                 'Premiere_date' => 'required', 
@@ -54,7 +53,7 @@ class AdminController extends Controller
                 'image' => 'required',
                 'link' =>  'required',
                 'category_id' => 'integer',
-            ]);
+        ]);
 
 
         if($request->category_id == 1 || $request->category_id == 3)
