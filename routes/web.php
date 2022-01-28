@@ -27,6 +27,9 @@ Route::get('/random',[HomeController::class,'random'])->name('random');
 Route::get('/show/{id}',[HomeController::class,'show'])->name('show');
 //Сохранение коментария
 Route::post('/saveComment',[HomeController::class,'saveComment'])->name('saveComment');
+//Редактирование пользователя
+Route::get('/edit_user/{id}',[HomeController::class,'edit_user'])->name('edit_user');
+Route::post('/update_user',[HomeController::class,'update_user'])->name('update_user');
 
 
 //Роуты доступные лишь зарегестрированным пользователям

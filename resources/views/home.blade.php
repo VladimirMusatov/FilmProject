@@ -27,7 +27,7 @@
                     <div class="home-person-block">
                         <img src="{{Storage::url('public/image/home/')}}Rectangle 3.png">
                             <div class="person-icon-bloc">
-                                <img class="person-icon" src="{{Storage::url('public/image/home/'.$user->detail_user->user_img)}}">
+                                <img class="person-icon" src="{{Storage::url('public/image/home/'.$user->id.'/'.$user->detail_user->user_img)}}">
                             </div>
 
                         <div class="person-text">
@@ -35,7 +35,7 @@
                             <p class="person-description">{{$user->detail_user->description}}</p>
                         </div>
                     </div>
-                 <a href="#" class="btn catalog-btn home-btn">Редактировать профиль</a>
+                 <a href="{{route('edit_user',$user->id)}}" class="btn catalog-btn home-btn">Редактировать профиль</a>
 
                     <div class="person-recomend">
                         <div class="person-recomend-header">

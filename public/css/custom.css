@@ -167,11 +167,12 @@
 
 .home-main-section{
 	display: flex;
+	padding-top: 40px;
 	justify-content: space-between;
 }
 
 .home-center-section{
-	margin-top: 40px;
+	padding-top: 40px;
 	width: 790px;
 	background-color: #fff;
 	margin-bottom: 15px;
@@ -203,7 +204,6 @@
 }
 
 .home-person-block{
-	margin-top: 40px;
 	background-color: #fff;
 	border-radius: 2px;
 	display: flex;
@@ -224,7 +224,8 @@
 	justify-content: center;
 	border: 3px solid	#ffffff;
 	border-radius: 200px;
-	width: 145px;
+	width: 130px;
+	height: 130px;
 }
 .person-text{
 	display: flex;
@@ -250,4 +251,23 @@
 	width: 100%;
 	background-color: #E9F0F8;
 	margin-bottom: 15px;
+}
+
+/*Секция редактирования пользователя*/
+
+.edit_user-center-section{
+	margin-right: 55px;
+	width: 600px;
+	background-color: #fff;
+	margin-bottom: 15px;
+}
+
+.edit_user-statistic{
+	display: flex;
+}
+
+.edit_user-main-section{
+	display: flex;
+	padding-top: 40px;
+	justify-content: flex-end;
 }
