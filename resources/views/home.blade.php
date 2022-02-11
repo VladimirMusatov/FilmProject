@@ -25,9 +25,17 @@
                 </div>
                 <div class="home-right-section">
                     <div class="home-person-block">
-                        <img src="{{Storage::url('public/image/home/')}}Rectangle 3.png">
+                        @if(($user->detail_user->back_img) == 'Rectangle 3.png')
+                        <img class="home-person-back_img" src="{{Storage::url('public/image/home/')}}Rectangle 3.png">
+                        @else
+                        <img class="home-person-back_img" src="{{Storage::url('public/image/home/'.$user->id.'/'.$user->detail_user->back_img)}}">
+                        @endif
                             <div class="person-icon-bloc">
+                              @if(($user->detail_user->user_img) == 'images.jfif')
+                                <img class="person-icon" src="{{Storage::url('public/image/home/').'images.jfif'}}">
+                              @else  
                                 <img class="person-icon" src="{{Storage::url('public/image/home/'.$user->id.'/'.$user->detail_user->user_img)}}">
+                              @endif  
                             </div>
 
                         <div class="person-text">

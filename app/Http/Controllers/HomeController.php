@@ -102,7 +102,8 @@ class HomeController extends Controller
     {
         $validate = $request->validate([
                 'name' => 'required',
-                'user_img' => 'required', 
+                'user_img' => 'required',
+                'back_img' => 'required', 
                 'description' => 'required',
 
         ]);
@@ -112,20 +113,29 @@ class HomeController extends Controller
 
         // Удаление старой фотографии
         $img = Detail_user::where('user_id',$request->user_id)->first('user_img');
+        $back_img = Detail_user::where('user_id',$request->user_id)->first('back_img');
         $path = 'public/image/home/'.$user_id.'/'.$img['user_img'];
+        $back_path = 'public/image/home/'.$user_id.'/'.$img['back_img'];
         $file = Storage::delete($path);
+        $file = Storage::delete($back_path);
 
         //Сохранение новой фотографии
         $filename = $data['user_img']->getClientOriginalName();
         $data['user_img']->move(Storage::path('/public/image/').'home/'.$data['user_id'],$filename);
         $data['user_img'] = $filename;
 
+        //Сохранение нового фона
+        $filename1 = $data['back_img']->getClientOriginalName();
+        $data['back_img']->move(Storage::path('/public/image/').'home/'.$data['user_id'],$filename1);
+        $data['back_img'] = $filename1;
+
         User::where('id', $user_id)->update(['name'=>$data['name']]);
-        Detail_user::where('user_id',$user_id)->update(['description'=>$data['description'],'user_img'=>$data['user_img']]);
+        Detail_user::where('user_id',$user_id)->update(['description'=>$data['description'],'user_img'=>$data['user_img'],'back_img'=>$data['back_img']]);
 
         $user = User::where('id', $user_id)->get();
 
         return view('home',['users'=>$user]);
+
     }
 
 }

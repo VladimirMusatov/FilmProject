@@ -213,6 +213,11 @@
 	margin-bottom: 25px;
 }
 
+.home-person-back_img{
+	width: 300px;
+	height: 140px;
+}
+
 .person-icon-bloc{
 	position: relative;
 	bottom: 55px;
