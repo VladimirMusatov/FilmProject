@@ -21,7 +21,21 @@
                         <p>Просмотрено серий аниме</p>           
                     </div>
                     </div> 
-                    <hr style="width: 90%; margin:0 auto;">  
+                    <hr style="width: 90%; margin:0 auto;">
+                        <div class="home-favorite">
+                            @if(isset($favorites))
+                            @foreach($favorites as $favorite)
+                            <div class="home-favorite-item">
+                                <div class="home-favorite-container_img"><img class="home-favorite-image" src="{{Storage::url('public/image/films/'.$favorite->film->image)}}"></div>
+                                <div class="home-favorite-text">
+                                <div class="home-favorite-text-title"><a class="home-favorite-text-title" href="{{route('show',$favorite->film->id)}}">{{$favorite->film->title}}</a></div>
+                                <div class=" home-favorite-text-descripton">{{$favorite->film->description}}</div> 
+                                </div>
+                            </div>
+                    <hr>
+                            @endforeach
+                            @endif                
+                        </div>
                 </div>
                 <div class="home-right-section">
                     <div class="home-person-block">

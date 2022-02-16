@@ -162,6 +162,7 @@
 /*Секция Home*/
 .home-body{
 	margin-top: -23px;
+	padding-bottom: 100px;
 	background-color: #E5E5E5;
 }
 
@@ -169,10 +170,11 @@
 	display: flex;
 	padding-top: 40px;
 	justify-content: space-between;
+	align-items: flex-start;
 }
 
 .home-center-section{
-	padding-top: 40px;
+	padding-top: 15px;
 	width: 790px;
 	background-color: #fff;
 	margin-bottom: 15px;
@@ -194,6 +196,30 @@
 .home-statistic{
 	display: flex;
 	justify-content: space-between;
+}
+
+.home-favorite{
+	margin: 10px 20px;
+}
+
+.home-favorite-item{
+	display: flex;
+}
+
+
+.home-favorite-image{
+	width: 200px;
+	margin-right: 20px;
+}
+
+.home-favorite-text-title{
+	font-size: 20px;
+	text-decoration: none;
+	color: gray ;
+}
+
+.home-favorite-text-description{
+
 }
 
 .home-right-section{
@@ -243,6 +269,7 @@
 	width: 200px;
 }
 .person-recomend{
+	padding-bottom: 15px;
 	width: 100%;
 	background-color: #ffffff;
 }

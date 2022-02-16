@@ -16,11 +16,11 @@ use App\Http\Controllers\AdminController;
 |
 */
 
-Route::redirect('/','/index');
+Route::redirect('/','/FilmProject');
 Auth::routes();
 
 //Общедоступные роуты
-Route::get('/index',[HomeController::class,'index'])->name('index');
+Route::get('/FilmProject',[HomeController::class,'index'])->name('index');
 Route::get('/catalog',[HomeController::class,'catalog'])->name('catalog');
 Route::get('/catalog/{slug}',[HomeController::class,'SortByCat'])->name('categories');
 Route::get('/random',[HomeController::class,'random'])->name('random');
@@ -30,12 +30,17 @@ Route::post('/saveComment',[HomeController::class,'saveComment'])->name('saveCom
 //Редактирование пользователя
 Route::get('/edit_user/{id}',[HomeController::class,'edit_user'])->name('edit_user');
 Route::post('/update_user',[HomeController::class,'update_user'])->name('update_user');
+//Подборки
+Route::get('/collections',[HomeController::class,'collections'])->name('collections');
+
+//Избранное
+Route::get('/saveFavorite',[HomeController::class,'SaveFavorite'])->name('SaveFavorite');
 
 
 //Роуты доступные лишь зарегестрированным пользователям
 Route::group(['middleware'=>['role:user|admin']],function(){
 
-    Route::post('/home/{id}',[HomeController::class, 'home'])->name('home');
+Route::post('/home/{id}',[HomeController::class, 'home'])->name('home');
 
 });
 

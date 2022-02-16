@@ -13,6 +13,7 @@ use App\Models\Category;
 use App\Models\Comment;
 use App\Models\User;
 use App\Models\Detail_user;
+use App\Models\Favorite;
 
 class HomeController extends Controller
 {
@@ -27,7 +28,9 @@ class HomeController extends Controller
 
         $user = User::where('id', $user_id)->get();
 
-        return view('home',['users'=>$user]);
+        $favorites = Favorite::where('user_id',$user_id)->paginate(3);
+
+        return view('home',['users'=>$user , 'favorites' => $favorites]);
     }
 
     public function catalog(Request $request)
@@ -89,6 +92,15 @@ class HomeController extends Controller
         return redirect('/show/'.$id);
     }
 
+    public function saveFavorite(Request $request)
+    {
+        Favorite::create($request->all());
+
+        $id = $request->film_id;
+
+        return redirect('/show/'.$id);
+    }
+
     public function edit_user($id)
     {
 
@@ -136,6 +148,11 @@ class HomeController extends Controller
 
         return view('home',['users'=>$user]);
 
+    }
+
+    public function collections()
+    {
+        return view('collections');
     }
 
 }

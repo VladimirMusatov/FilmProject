@@ -35,6 +35,12 @@
 	<div class="row">
 	<iframe  src="{{$kino->link}}" width="700" height="520"  frameborder="0" allowfullscreen></iframe>
 	</div>
+	<form action="{{route('SaveFavorite')}}">
+		@csrf
+		<input type="hidden" name="film_id" value='{{$kino->id}}'>
+		<input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+		<button type="submit" class="btn btn-secondary mt-3">Смотреть позже</button>
+	</form>
 	<hr>
 </div>
 
