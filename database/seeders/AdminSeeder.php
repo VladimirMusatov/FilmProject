@@ -20,6 +20,13 @@ class AdminSeeder extends Seeder
             'email'=>'Vladimir@gmail.com',
             'password' => Hash::make('123456789'),
             ]);
+        
+        DB::table('detail_users')->insert([
+            'user_id' =>'1',
+            'description' => 'Краткое описание',
+            'user_img' => 'images.jfif',
+            'back_img' => 'Rectangle 3.png',
+        ]);
 
         DB::table('roles')->insert([
             'name' => 'admin',
