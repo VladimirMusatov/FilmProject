@@ -10,32 +10,40 @@
                     <div class="home-statistic">
                      <div class="home-center-card">
                         <h3>15</h3>
-                        <p>Просмотрено фильмов</p>           
+                        <p>Фильмов просмотренно</p>           
                     </div>
                     <div class="home-center-card">
                         <h3>46</h3>
-                        <p>Просмотрено серий сериалов</p>           
+                        <p>Сериалов просмотренно</p>           
                     </div>
                     <div class="home-center-card">
                         <h3>17</h3>
-                        <p>Просмотрено серий аниме</p>           
+                        <p>Аниме просмотренно</p>           
                     </div>
                     </div> 
-                    <hr style="width: 90%; margin:0 auto;">
-                        <div class="home-favorite">
-                            @if(isset($favorites))
+                    <hr style="width: 90%; margin:0 auto 15px;">
+                    <div class="home-favorite">
+                        <div class="home-favorite-container">
                             @foreach($favorites as $favorite)
-                            <div class="home-favorite-item">
-                                <div class="home-favorite-container_img"><img class="home-favorite-image" src="{{Storage::url('public/image/films/'.$favorite->film->image)}}"></div>
+                            <div class="home-favorite-item row justify-content-between">
+
+                                <div class="home-favorite-item-left col">
+                                <div class="home-favorite-img"><img src="{{Storage::url('public/image/icon/')}}icon.jpg" class="home-favorite-icon"></div>
                                 <div class="home-favorite-text">
-                                <div class="home-favorite-text-title"><a class="home-favorite-text-title" href="{{route('show',$favorite->film->id)}}">{{$favorite->film->title}}</a></div>
-                                <div class=" home-favorite-text-descripton">{{$favorite->film->description}}</div> 
+                                    <div class="home-favorite-text-title"><a class="home-favorite-text-link" href="{{route('show',$favorite->film->id)}}">{{$favorite->film->title}}</a></div>
+                                    <div class="home-favorite-text-orig_title">{{$favorite->film->OrigTitle}}</div>
+                                </div>
+                                </div>
+
+                                <div class="home-favorite-item-right col">
+                                    <button class="home-favorite-buttom-delete home-favorite-btn">Убрать</button>
+                                   <button  class="home-favorite-buttom-delete home-favorite-btn">Просмотренно</button>
                                 </div>
                             </div>
-                    <hr>
+                            <hr>
                             @endforeach
-                            @endif                
                         </div>
+                    </div>
                 </div>
                 <div class="home-right-section">
                     <div class="home-person-block">
