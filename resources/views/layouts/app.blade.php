@@ -60,14 +60,15 @@
                                     {{ Auth::user()->name }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">    
-                                    <form method="POST" action="{{route('home',Auth::user()->id)}}">
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">  
+                                    <a class="dropdown-item" href="{{route('home',Auth::user()->id)}}">Личный кабинет</a>  
+<!--                                     <form  action="{{route('home',Auth::user()->id)}}">
                                         @csrf
                                         <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                                         <button class="dropdown-item" type="submit">
                                             Личный кабинет
                                         </button>
-                                    </form>
+                                    </form> -->
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

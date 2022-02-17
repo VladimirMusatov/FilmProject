@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\ShowController;
 
 
 /*
@@ -20,19 +22,22 @@ Route::redirect('/','/FilmProject');
 Auth::routes();
 
 //Общедоступные роуты
-Route::get('/FilmProject',[HomeController::class,'index'])->name('index');
-Route::get('/catalog',[HomeController::class,'catalog'])->name('catalog');
-Route::get('/catalog/{slug}',[HomeController::class,'SortByCat'])->name('categories');
-Route::get('/random',[HomeController::class,'random'])->name('random');
-Route::get('/show/{id}',[HomeController::class,'show'])->name('show');
+Route::get('/FilmProject',[CatalogController::class,'index'])->name('index');
+//Роуты просмотра страницы
+Route::get('/random',[ShowController::class,'random'])->name('random');
+Route::get('/show/{id}',[ShowController::class,'show'])->name('show');
 //Сохранение коментария
-Route::post('/saveComment',[HomeController::class,'saveComment'])->name('saveComment');
+Route::post('/saveComment',[ShowController::class,'saveComment'])->name('saveComment');
+//Роуты каталога
+Route::get('/catalog/{slug}',[CatalogController::class,'SortByCat'])->name('categories');
+Route::get('/catalog',[CatalogController::class,'catalog'])->name('catalog');
+//Подборки
+Route::get('/collections',[CatalogController::class,'collections'])->name('collections');
+
+
 //Редактирование пользователя
 Route::get('/edit_user/{id}',[HomeController::class,'edit_user'])->name('edit_user');
 Route::post('/update_user',[HomeController::class,'update_user'])->name('update_user');
-//Подборки
-Route::get('/collections',[HomeController::class,'collections'])->name('collections');
-
 //Избранное
 Route::get('/saveFavorite',[HomeController::class,'SaveFavorite'])->name('SaveFavorite');
 
@@ -40,7 +45,7 @@ Route::get('/saveFavorite',[HomeController::class,'SaveFavorite'])->name('SaveFa
 //Роуты доступные лишь зарегестрированным пользователям
 Route::group(['middleware'=>['role:user|admin']],function(){
 
-Route::post('/home/{id}',[HomeController::class, 'home'])->name('home');
+Route::get('/home/{id}',[HomeController::class, 'home'])->name('home');
 
 });
 
