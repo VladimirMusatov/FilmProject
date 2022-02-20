@@ -58,4 +58,9 @@ class User extends Authenticatable
         return $this->hasMany(Favorite::class);
     }
 
+    public function watched()
+    {
+        return $this->hasMany(Watched::class);
+    }
+
 }

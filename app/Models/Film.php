@@ -41,5 +41,10 @@ class Film extends Model
         return $this->hasMany(Favorite::class);
     }
 
+    public function watched()
+    {
+        return $this->hasMany(Watched::class);
+    }
+
 }
  

@@ -247,6 +247,11 @@
 	margin-left: 5px;
 }
 
+.home-watched-container{
+	margin: 0 auto;
+	width: 90%
+}
+
 .home-right-section{
 	display: flex;
 	justify-content: center;

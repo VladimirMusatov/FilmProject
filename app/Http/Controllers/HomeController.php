@@ -6,9 +6,11 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Film;
 use App\Models\User;
 use App\Models\Detail_user;
 use App\Models\Favorite;
+use App\Models\Watched;
 
 class HomeController extends Controller
 {
@@ -18,7 +20,11 @@ class HomeController extends Controller
 
         $favorites = Favorite::where('user_id',$id)->paginate(3);
 
-        return view('home',['users'=>$user , 'favorites' => $favorites]);
+        $watched = Watched::where('user_id', $id)->get();
+
+        $countFilm = $watched->count();
+
+        return view('home',['users'=>$user , 'favorites' => $favorites, 'watched' => $watched, 'statistic' => ['countFilm' => $countFilm], ]);
     }
 
     public function saveFavorite(Request $request)
@@ -28,6 +34,29 @@ class HomeController extends Controller
         $id = $request->film_id;
 
         return redirect('/show/'.$id);
+    }
+
+    public function deleteFavorite($id)
+    {
+        Favorite::where('id',$id)->delete();
+
+        return redirect()->back();
+    }
+
+    public function saveWatched(Request $request)
+    {
+        $data = $request->only('user_id', 'film_id');
+
+        Watched::create($data);
+
+        return redirect()->back();
+    }
+
+    public function deleteWatched($id)
+    {
+        Watched::where('id',$id)->delete();
+
+        return redirect()->back();
     }
 
     public function edit_user($id)

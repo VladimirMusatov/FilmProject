@@ -29,7 +29,7 @@ class CatalogController extends Controller
         }
         else
         {    
-            $films = Film::paginate(4);
+            $films = Film::inRandomOrder()->paginate(4);
         }
             return view('catalog',compact('films'));
     }

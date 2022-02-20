@@ -9,24 +9,25 @@
                 <div class="home-center-section"> 
                     <div class="home-statistic">
                      <div class="home-center-card">
-                        <h3>15</h3>
+                        <h3>{{$statistic['countFilm']}}</h3>
                         <p>Фильмов просмотренно</p>           
                     </div>
                     <div class="home-center-card">
-                        <h3>46</h3>
+                        <h3>0</h3>
                         <p>Сериалов просмотренно</p>           
                     </div>
                     <div class="home-center-card">
-                        <h3>17</h3>
+                        <h3>0</h3>
                         <p>Аниме просмотренно</p>           
                     </div>
                     </div> 
                     <hr style="width: 90%; margin:0 auto 15px;">
                     <div class="home-favorite">
                         <div class="home-favorite-container">
+                                <h3>Избранное</h3>
+                                <hr>
                             @foreach($favorites as $favorite)
                             <div class="home-favorite-item row justify-content-between">
-
                                 <div class="home-favorite-item-left col">
                                 <div class="home-favorite-img"><img src="{{Storage::url('public/image/icon/')}}icon.jpg" class="home-favorite-icon"></div>
                                 <div class="home-favorite-text">
@@ -36,15 +37,43 @@
                                 </div>
                                 @if($user->id ==  Auth::user()->id)
                                 <div class="home-favorite-item-right col">
-                                    <button class="home-favorite-buttom-delete home-favorite-btn">Убрать</button>
-                                   <button  class="home-favorite-buttom-delete home-favorite-btn">Просмотренно</button>
+                                    <a href="{{route('deleteFavorite',$favorite->id)}}" class="home-favorite-buttom-delete home-favorite-btn">Убрать</a>
+                                    <form action="{{route('saveWatched')}}">
+                                        @csrf
+                                        <input type="hidden" name="film_id" value="{{$favorite->film->id}}">
+                                        <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                                        <button type="submit"  class="home-favorite-buttom-delete home-favorite-btn">Просмотренно</button>
+                                    </form>
                                 </div>
                                 @endif
                             </div>
-                            <hr>
                             @endforeach
                         </div>
                     </div>
+                    <div class="home-watched">
+                        <div class="home-watched-container">
+                            <hr>
+                            <h3>Просмотренно</h3>
+                            <hr>
+                            @foreach($watched as $watched)
+                            <div class="home-favorite-item row justify-content-between">
+                                <div class="home-favorite-item-left col">
+                                <div class="home-favorite-img"><img src="{{Storage::url('public/image/icon/')}}icon.jpg" class="home-favorite-icon"></div>
+                                <div class="home-favorite-text">
+                                    <div class="home-favorite-text-title"><a class="home-favorite-text-link" href="{{route('show',$favorite->film->id)}}">{{$watched->film->title}}</a></div>
+                                    <div class="home-favorite-text-orig_title">{{$watched->film->OrigTitle}}</div>
+                                </div>
+                                </div>
+                                @if($user->id ==  Auth::user()->id)
+                                <div class="home-favorite-item-right col">
+                                    <a href="{{route('deleteWatched',$watched->id)}}" class="home-favorite-buttom-delete home-favorite-btn">Убрать</a>
+                                </div>
+                                @endif
+                            </div>
+                           @endforeach
+                        </div>
+                    </div>
+
                 </div>
                 <div class="home-right-section">
                     <div class="home-person-block">

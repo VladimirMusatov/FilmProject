@@ -40,7 +40,10 @@ Route::get('/edit_user/{id}',[HomeController::class,'edit_user'])->name('edit_us
 Route::post('/update_user',[HomeController::class,'update_user'])->name('update_user');
 //Избранное
 Route::get('/saveFavorite',[HomeController::class,'SaveFavorite'])->name('SaveFavorite');
-
+Route::get('/deleteFavorite/{id}',[HomeController::class, 'deleteFavorite'])->name('deleteFavorite');
+//Просмотренно
+Route::get('/saveWatched',[HomeController::class,'saveWatched'])->name('saveWatched');
+Route::get('/deleteWatched/{id}',[HomeController::class,'deleteWatched'])->name('deleteWatched');
 
 //Роуты доступные лишь зарегестрированным пользователям
 Route::group(['middleware'=>['role:user|admin']],function(){
