@@ -61,14 +61,11 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">  
-                                    <a class="dropdown-item" href="{{route('home',Auth::user()->id)}}">Личный кабинет</a>  
-<!--                                     <form  action="{{route('home',Auth::user()->id)}}">
-                                        @csrf
-                                        <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-                                        <button class="dropdown-item" type="submit">
-                                            Личный кабинет
-                                        </button>
-                                    </form> -->
+                                    <a class="dropdown-item" href="{{route('home',Auth::user()->id)}}">Личный кабинет</a> 
+
+                                    @if(Auth::user()->roles['0']->name == 'admin')
+                                    <a class="dropdown-item" href="{{route('admin')}}">Админ панель</a>
+                                    @endif
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

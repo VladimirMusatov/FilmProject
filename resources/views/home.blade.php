@@ -34,11 +34,12 @@
                                     <div class="home-favorite-text-orig_title">{{$favorite->film->OrigTitle}}</div>
                                 </div>
                                 </div>
-
+                                @if($user->id ==  Auth::user()->id)
                                 <div class="home-favorite-item-right col">
                                     <button class="home-favorite-buttom-delete home-favorite-btn">Убрать</button>
                                    <button  class="home-favorite-buttom-delete home-favorite-btn">Просмотренно</button>
                                 </div>
+                                @endif
                             </div>
                             <hr>
                             @endforeach
@@ -65,12 +66,16 @@
                             <p class="person-description">{{$user->detail_user->description}}</p>
                         </div>
                     </div>
+                @if($user->id ==  Auth::user()->id)
                  <a href="{{route('edit_user',$user->id)}}" class="btn catalog-btn home-btn">Редактировать профиль</a>
+                @endif
 
                     <div class="person-recomend">
                         <div class="person-recomend-header">
                             <p>Избранное</p>
+                            @if($user->id ==  Auth::user()->id)
                             <p><a href="#">Изменить список</a></p>
+                            @endif
                         </div>
                         <hr style="width:90%; margin: 0 auto;">
                     </div>
