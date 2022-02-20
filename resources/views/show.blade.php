@@ -45,6 +45,7 @@
 
 	<form style="margin-left:15px" action="{{route('saveWatched')}}">
 		@csrf
+		<input type="hidden" name="category_id" value="{{$kino->category_id}}">
 		<input type="hidden" name="film_id" value='{{$kino->id}}'>
 		<input type="hidden" name="user_id" value="{{Auth::user()->id}}">
 		<button type="submit" class="btn btn-secondary mt-3">Просмотренно</button>

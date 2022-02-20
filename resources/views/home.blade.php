@@ -3,21 +3,22 @@
 @section('content')
 
 @foreach($users as $user)
+
     <div class="home-body">
         <div class="container">
             <div class="home-main-section">
                 <div class="home-center-section"> 
                     <div class="home-statistic">
                      <div class="home-center-card">
-                        <h3>{{$statistic['countFilm']}}</h3>
+                        <h3>{{$statistics->countFilm}}</h3>
                         <p>Фильмов просмотренно</p>           
                     </div>
                     <div class="home-center-card">
-                        <h3>0</h3>
+                        <h3>{{$statistics->countSerials}}</h3>
                         <p>Сериалов просмотренно</p>           
                     </div>
                     <div class="home-center-card">
-                        <h3>0</h3>
+                        <h3>{{$statistics->countAnime}}</h3>
                         <p>Аниме просмотренно</p>           
                     </div>
                     </div> 
@@ -40,6 +41,7 @@
                                     <a href="{{route('deleteFavorite',$favorite->id)}}" class="home-favorite-buttom-delete home-favorite-btn">Убрать</a>
                                     <form action="{{route('saveWatched')}}">
                                         @csrf
+                                        <input type="hidden" name="category_id" value="{{$favorite->film->category_id}}">
                                         <input type="hidden" name="film_id" value="{{$favorite->film->id}}">
                                         <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                                         <button type="submit"  class="home-favorite-buttom-delete home-favorite-btn">Просмотренно</button>

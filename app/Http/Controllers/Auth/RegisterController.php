@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Models\Detail_user;
+use App\Models\Statistics;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -78,6 +79,10 @@ class RegisterController extends Controller
         $detail_user = Detail_user::create([
             'user_id' => $user_id,
             'description' => 'Краткое описание',
+        ]);
+
+        $statistics = Statistics::create([
+            'user_id' => $user_id,
         ]);
 
         $user->assignRole('user');

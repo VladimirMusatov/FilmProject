@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\Detail_user;
 use App\Models\Favorite;
 use App\Models\Watched;
+use App\Models\Statistics;
 
 class HomeController extends Controller
 {
@@ -22,9 +23,9 @@ class HomeController extends Controller
 
         $watched = Watched::where('user_id', $id)->get();
 
-        $countFilm = $watched->count();
+        $statistics = Statistics::where('user_id', $id)->first();
 
-        return view('home',['users'=>$user , 'favorites' => $favorites, 'watched' => $watched, 'statistic' => ['countFilm' => $countFilm], ]);
+        return view('home',['users'=>$user , 'favorites' => $favorites, 'watched' => $watched, 'statistics' => $statistics, ]);
     }
 
     public function saveFavorite(Request $request)
@@ -46,10 +47,21 @@ class HomeController extends Controller
     public function saveWatched(Request $request)
     {
         $data = $request->only('user_id', 'film_id');
+        $user_id = $request->only('user_id');
+        $category_id = $request->category_id;
 
-        Watched::create($data);
+        if($category_id == 1 || $category_id == 3 ){
+            $count = Statistics::where('user_id', $user_id)->increment('countFilm');
+        }
+        if($category_id == 2 || $category_id == 4){
+            $count = Statistics::where('user_id', $user_id)->increment('countSerials');
+        }   
+        if($category_id == 5){
+            $count = Statistics::where('user_id', $user_id)->increment('countAnime');
+        }
 
-        return redirect()->back();
+         Watched::create($data);
+         return redirect()->back();
     }
 
     public function deleteWatched($id)
