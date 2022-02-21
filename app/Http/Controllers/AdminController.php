@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Film;
+use App\Models\Comment;
 use App\Models\DetFilm;
 use App\Models\DetSerial;
-use App\Models\Serial;
+use App\Models\Watched;
+use App\Models\Favorite;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 
@@ -121,6 +123,19 @@ class AdminController extends Controller
             Film::create($data);
 
             return redirect('admin')->with('success','Контент был успешно добавлен');
+    }
+
+    //Удаление фильма
+    public function delete($id)
+    {
+        Film::where('id', $id)->delete();
+        Comment::where('film_id', $id)->delete();
+        DetFilm::where('film_id',$id)->delete();
+        DetSerial::where('film_id',$id)->delete();
+        Favorite::where('film_id',$id)->delete();
+        Watched::where('film_id',$id)->delete();
+
+        return redirect()->back();
     }
 
     public function saveDetFilm(Request $request)

@@ -63,6 +63,8 @@ Route::group(['middleware' =>['role:admin']], function(){
     Route::get('/addDet/{id}',[AdminController::class, 'addDet'])->name('addDet');
     //Сохранение фильма
     Route::post('/store',[AdminController::class, 'store'])->name('store');
+    //Удалене фильма
+    Route::get('/delete/{id}',[AdminController::class,'delete'])->name('delete');
     //Сохранение дополнительной информации о фильме
     Route::post('/saveDetFilm',[AdminController::class, 'saveDetFilm'])->name('saveDetFilm');
     //Сохранение дополнительной информации о сериале

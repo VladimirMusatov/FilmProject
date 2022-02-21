@@ -50,28 +50,9 @@
          <form action="{{route('edit',$film->id)}}">
          <button type="submit" style="margin: -14px" class="btn btn-link">Изменить</button>
          </form>
-         <!-- Button trigger modal -->
-         <button type="button" class="btn btn-link" style="color: red; margin: -14px" data-bs-toggle="modal" data-bs-target="#exampleModal">
+         <a href="{{route('delete',$film->id)}}" class="btn btn-link" style="color: red; margin: -14px">
           Удалить
-         </button>
-
-<!-- Modal -->
-   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Подтвердите действие</h5>
-      </div>
-      <div class="modal-body">
-        Вы уверены что хотите удалить "{{$film->title}}" из библиотеки?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-        <button type="button" class="btn btn-danger">Удалить</button>
-      </div>
-    </div>
-  </div>
-   </div>
+         </a>
       </th>
       <!-- Вторая колонка -->
       <td >{{$film->category->title}} <br>
