@@ -17,14 +17,17 @@ DB_PASSWORD=
 Запустить миграции
 php artisan migrate
 
+Создать символическую ссылку
+php artisan storage:link
+
 Запустить сиды
 php artisan db:seed
 
 Сгенерировать app_key
 php artisan key:generate
 
-Создать символическую ссылку
-php artisan storage:link
+И запустить веб-сервер
+php artisan serve
 
 Логин и пароль от админки
 Логин:Vladimir@gmail.com
