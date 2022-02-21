@@ -4,7 +4,10 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use App\Models\User;
+use Carbon\Carbon;
 
 class AdminSeeder extends Seeder
 {
@@ -15,11 +18,20 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name'=>'Vladimir',
-            'email'=>'Vladimir@gmail.com',
+        $admin = User::create([
+            'email' => 'Vladimir@gmail.com',
+            'name' => 'admin',
             'password' => Hash::make('123456789'),
-            ]);
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
+        Role::create([
+            'name' => 'admin',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
         
         DB::table('detail_users')->insert([
             'user_id' =>'1',
@@ -28,20 +40,12 @@ class AdminSeeder extends Seeder
             'back_img' => 'Rectangle 3.png',
         ]);
 
-        DB::table('roles')->insert([
-            'name' => 'admin',
-            'guard_name' => 'web',
+        DB::table('statistics')->insert([
+            'user_id' => '1',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
         ]);
 
-        DB::table('roles')->insert([
-            'name'=> 'user',
-            'guard_name' => 'web',
-        ]);
-
-        DB::table('model_has_roles')->insert([
-            'role_id' => '1',
-            'model_type' => 'App\Models\User',
-            'model_id' =>'1'
-        ]);
+        $admin->assignRole('admin');
     }
 }

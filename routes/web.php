@@ -34,6 +34,9 @@ Route::get('/catalog',[CatalogController::class,'catalog'])->name('catalog');
 //Подборки
 Route::get('/collections',[CatalogController::class,'collections'])->name('collections');
 
+//Личный кабинет
+Route::get('/home/{id}',[HomeController::class, 'home'])->name('home');
+
 
 //Редактирование пользователя
 Route::get('/edit_user/{id}',[HomeController::class,'edit_user'])->name('edit_user');
@@ -45,12 +48,6 @@ Route::get('/deleteFavorite/{id}',[HomeController::class, 'deleteFavorite'])->na
 Route::get('/saveWatched',[HomeController::class,'saveWatched'])->name('saveWatched');
 Route::get('/deleteWatched/{id}',[HomeController::class,'deleteWatched'])->name('deleteWatched');
 
-//Роуты доступные лишь зарегестрированным пользователям
-Route::group(['middleware'=>['role:user|admin']],function(){
-
-Route::get('/home/{id}',[HomeController::class, 'home'])->name('home');
-
-});
 
 //Роуты доступные лишь админу
 Route::group(['middleware' =>['role:admin']], function(){
