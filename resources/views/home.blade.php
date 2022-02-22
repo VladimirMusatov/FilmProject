@@ -44,7 +44,8 @@
                                         <input type="hidden" name="category_id" value="{{$favorite->film->category_id}}">
                                         <input type="hidden" name="film_id" value="{{$favorite->film->id}}">
                                         <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-                                        <button type="submit"  class="home-favorite-buttom-delete home-favorite-btn">Просмотренно</button>
+                                        <input type="hidden" name="slug" value="{{Auth::user()->id}}{{$favorite->film->id}}">
+                                        <button type="submit"  class="home-favorite-buttom-delete home-favorite-btn btn btn-link">Просмотренно</button>
                                     </form>
                                 </div>
                                 @endif
@@ -62,7 +63,7 @@
                                 <div class="home-favorite-item-left col">
                                 <div class="home-favorite-img"><img src="{{Storage::url('public/image/icon/')}}icon.jpg" class="home-favorite-icon"></div>
                                 <div class="home-favorite-text">
-                                    <div class="home-favorite-text-title"><a class="home-favorite-text-link" href="{{route('show',$favorite->film->id)}}">{{$watched->film->title}}</a></div>
+                                    <div class="home-favorite-text-title"><a class="home-favorite-text-link" href="{{route('show',$watched->film->id)}}">{{$watched->film->title}}</a></div>
                                     <div class="home-favorite-text-orig_title">{{$watched->film->OrigTitle}}</div>
                                 </div>
                                 </div>

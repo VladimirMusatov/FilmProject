@@ -30,11 +30,15 @@ class HomeController extends Controller
 
     public function saveFavorite(Request $request)
     {
-        Favorite::create($request->all());
+        $validate = $request->validate([
+                'slug' => 'unique:favorites',
+        ]);
 
-        $id = $request->film_id;
+            Favorite::create($request->all());
 
-        return redirect('/show/'.$id);
+            $id = $request->film_id;
+
+            return redirect('/show/'.$id);
     }
 
     public function deleteFavorite($id)
@@ -46,8 +50,13 @@ class HomeController extends Controller
 
     public function saveWatched(Request $request)
     {
-        $data = $request->only('user_id', 'film_id');
+        $validate = $request->validate([
+            'slug' => 'unique:watcheds'
+        ]);
+
+        $data = $request->only('user_id', 'film_id','slug');
         $user_id = $request->only('user_id');
+
         $category_id = $request->category_id;
 
         if($category_id == 1 || $category_id == 3 ){

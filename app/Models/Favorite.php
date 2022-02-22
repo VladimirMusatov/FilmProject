@@ -13,6 +13,7 @@ class favorite extends Model
 
         'user_id',
         'film_id',
+        'slug',
     ];
 
     public function User(){

@@ -40,11 +40,13 @@
 		@csrf
 		<input type="hidden" name="film_id" value='{{$kino->id}}'>
 		<input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+		<input type="hidden" name="slug" value="{{Auth::user()->id}}{{$kino->id}}">
 		<button type="submit" class="btn btn-secondary mt-3">Смотреть позже</button>
 	</form>
 
 	<form style="margin-left:15px" action="{{route('saveWatched')}}">
 		@csrf
+		<input type="hidden" name="slug" value="{{Auth::user()->id}}{{$kino->id}}">
 		<input type="hidden" name="category_id" value="{{$kino->category_id}}">
 		<input type="hidden" name="film_id" value='{{$kino->id}}'>
 		<input type="hidden" name="user_id" value="{{Auth::user()->id}}">
