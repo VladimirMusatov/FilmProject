@@ -75,6 +75,25 @@ class HomeController extends Controller
 
     public function deleteWatched($id)
     {
+        $film_id = Watched::where('id',$id)->first('film_id');
+
+        $user_id = Watched::where('id', $id)->first('user_id');
+        $user_id = $user_id['user_id'];
+
+        $category_id = Film::where('id', $film_id['film_id'])->first('category_id');
+
+        $category_id = $category_id['category_id'];
+
+        if($category_id == 1 || $category_id == 3 ){
+            $count = Statistics::where('user_id', $user_id)->decrement('countFilm');
+        }
+        if($category_id == 2 || $category_id == 4){
+            $count = Statistics::where('user_id', $user_id)->decrement('countSerials');
+        }   
+        if($category_id == 5){
+            $count = Statistics::where('user_id', $user_id)->decrement('countAnime');
+        }
+
         Watched::where('id',$id)->delete();
 
         return redirect()->back();
