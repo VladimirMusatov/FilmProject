@@ -36,6 +36,7 @@
 	<iframe  src="{{$kino->link}}" width="700" height="520"  frameborder="0" allowfullscreen></iframe>
 	</div>
 	<div style="display:flex;">
+	 @if(Auth::user())
 	 <form action="{{route('SaveFavorite')}}">
 		@csrf
 		<input type="hidden" name="film_id" value='{{$kino->id}}'>
@@ -43,7 +44,9 @@
 		<input type="hidden" name="slug" value="{{Auth::user()->id}}{{$kino->id}}">
 		<button type="submit" class="btn btn-secondary mt-3">Смотреть позже</button>
 	</form>
+		@endif
 
+		@if(Auth::user())
 	<form style="margin-left:15px" action="{{route('saveWatched')}}">
 		@csrf
 		<input type="hidden" name="slug" value="{{Auth::user()->id}}{{$kino->id}}">
@@ -52,6 +55,7 @@
 		<input type="hidden" name="user_id" value="{{Auth::user()->id}}">
 		<button type="submit" class="btn btn-secondary mt-3">Просмотренно</button>
 	</form>
+	@endif
  </div>
 
 

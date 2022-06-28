@@ -17,11 +17,11 @@ class AdminController extends Controller
 
     public function admin(Request $request){
 
-        if(isset($request->search))
+        if($request->search)
         {
             $films = Film::where('title','LIKE',"%{$request->search}%")->orderBy('title')->paginate(10);
         }
-        elseif(isset($request->nonedet))
+        elseif($request->nonedet)
         {
             $films = Film::where('status',0)->paginate(10);
         }
@@ -65,7 +65,11 @@ class AdminController extends Controller
                 'duration' => 'required',
             ]);
 
-            DetFilm::where('id', $request->film_id)->updateOrInsert(['director'=>$request->director, 'duration'=>$request->duration,'film_id'=>$request->film_id,]);
+            DetFilm::where('id', $request->film_id)->updateOrInsert([
+                'director'=>$request->director,
+                'duration'=>$request->duration,
+                'film_id'=>$request->film_id,
+            ]);
         }
         else
         {
@@ -74,7 +78,11 @@ class AdminController extends Controller
                 'episodes' => 'required|integer',
             ]);
 
-            DetSerial::where('id', $request->film_id)->updateOrInsert(['season'=>$request->season,'episodes'=>$request->episodes, 'film_id'=>$request->film_id,]);
+            DetSerial::where('id', $request->film_id)->updateOrInsert([
+                'season'=>$request->season,
+                'episodes'=>$request->episodes,
+                'film_id'=>$request->film_id,
+            ]);
         }
             $data = $request->all(); 
 
@@ -88,7 +96,15 @@ class AdminController extends Controller
             $data['image']->move(Storage::path('/public/image/').'films/',$filename);   
             $data['image'] = $filename;
 
-            Film::where('id', $request->id)->update(['title'=>$data['title'],'OrigTitle'=>$data['OrigTitle'],'description'=>$data['description'],'image'=>$data['image'],'CreatDate'=>$data['CreatDate'],'Premiere_date'=>$data['Premiere_date'], 'status' => 1]);
+            Film::where('id', $request->id)->update([
+                'title'=>$data['title'],
+                'OrigTitle'=>$data['OrigTitle'],
+                'description'=>$data['description'],
+                'image'=>$data['image'],
+                'CreatDate'=>$data['CreatDate'],
+                'Premiere_date'=>$data['Premiere_date'],
+                'status' => 1,
+            ]);
 
             return redirect('admin')->with('success','Данные измененны');
     }
